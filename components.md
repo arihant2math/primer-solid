@@ -72,7 +72,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] SelectPanel (experimental v2) (@primer/behaviors, @primer/octicons-react, ActionList, Octicon, Overlay, live-region, useResponsiveValue, useSlots) (not implemented)
 - [ ] SideNav (Link) (not implemented)
 - [ ] SkeletonAvatar (Avatar, SkeletonBox, useResponsiveValue) (not implemented)
-- [ ] SkeletonBox (none) (not implemented)
+- [x] SkeletonBox (none) (implemented in `src/components/Skeleton`; includes delay behavior and CSS module styles)
 - [ ] SkeletonText (SkeletonBox) (not implemented)
 - [ ] Spinner (VisuallyHidden, hooks, useMedia) (not implemented)
 - [ ] SplitPageLayout (PageLayout) (not implemented)
