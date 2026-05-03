@@ -1,0 +1,20 @@
+.Link {
+  color: var(--fgColor-accent);
+  text-decoration: none;
+}
+
+.Link:hover {
+  text-decoration: underline;
+}
+
+.LinkMuted {
+  color: var(--fgColor-muted);
+}
+
+.LinkOnHover {
+  color: inherit;
+}
+
+.LinkOnHover:hover {
+  color: var(--fgColor-accent);
+}

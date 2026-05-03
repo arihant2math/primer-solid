@@ -1,0 +1,77 @@
+{
+  "name": "@primer/solid",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A SolidJS implementation of GitHub's Primer Design System",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/assets/styles.css"
+  },
+  "typings": "./dist/index.d.ts",
+  "sideEffects": [
+    "dist/**/*.css",
+    "src/**/*.css"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "clean": "rimraf dist",
+    "dev": "vite --host 0.0.0.0",
+    "format": "prettier --write 'src/**/*.{css,ts,tsx}' '*.{md,json,ts}'",
+    "format:diff": "prettier --list-different 'src/**/*.{css,ts,tsx}' '*.{md,json,ts}'",
+    "lint": "tsc --noEmit",
+    "test": "vitest",
+    "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primer/solid.git"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "components",
+    "library",
+    "design-system",
+    "primer"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "GitHub, Inc.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.19",
+    "npm": ">=10"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@solidjs/testing-library": "^0.8.10",
+    "@testing-library/jest-dom": "^6.9.1",
+    "jsdom": "^27.2.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "solid-js": "^1.9.10",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-solid": "^2.11.8",
+    "vitest": "^4.0.15"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
