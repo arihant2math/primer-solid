@@ -30,7 +30,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] CheckboxGroup (Checkbox, FormControl, hooks) (not implemented)
 - [ ] CircleBadge (Octicon) (not implemented)
 - [ ] ConfirmationDialog (BaseStyles, Dialog, react-dom/client) (not implemented)
-- [ ] CounterLabel (VisuallyHidden) (not implemented)
+- [x] CounterLabel (VisuallyHidden)
 - [ ] DataTable (Table) (not implemented)
 - [x] Details (useMergedRefs)
 - [ ] Dialog (@primer/behaviors, @primer/octicons-react, Button, Portal, ScrollableRegion, hooks, useFocusTrap, useFocusZone, useId, useResizeObserver, useResponsiveValue, useSlots) (not implemented)

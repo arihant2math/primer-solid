@@ -21,6 +21,8 @@
 
   --base-duration-1000: 1000ms;
 
+  --borderWidth-thin: 1px;
+
   --borderRadius-small: 0.1875rem;
   --borderRadius-medium: 0.375rem;
   --borderRadius-large: 0.75rem;
@@ -58,7 +60,9 @@
   --fgColor-success: #1a7f37;
   --bgColor-default: #ffffff;
   --bgColor-muted: #f6f8fa;
+  --bgColor-neutral-muted: rgba(175, 184, 193, 0.2);
   --bgColor-emphasis: #25292e;
+  --bgColor-neutral-emphasis: #6e7781;
   --bgColor-accent-emphasis: #0969da;
   --bgColor-success-emphasis: #1f883d;
   --bgColor-danger-emphasis: #cf222e;
@@ -71,6 +75,7 @@
   --button-danger-bgColor-rest: #cf222e;
   --button-danger-bgColor-hover: #a40e26;
   --button-danger-borderColor-rest: #a40e26;
+  --counter-borderColor: transparent;
   --borderColor-default: #d1d9e0;
   --borderColor-muted: #d8dee4;
   --skeletonLoader-bgColor: #d8dee4;
@@ -91,7 +96,9 @@
   --fgColor-success: #3fb950;
   --bgColor-default: #0d1117;
   --bgColor-muted: #151b23;
+  --bgColor-neutral-muted: rgba(110, 118, 129, 0.4);
   --bgColor-emphasis: #f0f6fc;
+  --bgColor-neutral-emphasis: #6e7681;
   --bgColor-accent-emphasis: #1f6feb;
   --bgColor-success-emphasis: #238636;
   --bgColor-danger-emphasis: #da3633;
@@ -104,6 +111,7 @@
   --button-danger-bgColor-rest: #da3633;
   --button-danger-bgColor-hover: #b62324;
   --button-danger-borderColor-rest: #da3633;
+  --counter-borderColor: transparent;
   --borderColor-default: #3d444d;
   --borderColor-muted: #3d444d;
   --skeletonLoader-bgColor: #3d444d;
