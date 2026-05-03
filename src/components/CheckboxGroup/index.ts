@@ -11,7 +11,13 @@ import type {
   CheckboxGroupValidationProps,
 } from './CheckboxGroup'
 
-const CheckboxGroup = Object.assign(CheckboxGroupImpl, {
+type CheckboxGroupComponent = typeof CheckboxGroupImpl & {
+  Caption: typeof CheckboxGroupCaption
+  Label: typeof CheckboxGroupLabel
+  Validation: typeof CheckboxGroupValidation
+}
+
+const CheckboxGroup: CheckboxGroupComponent = Object.assign(CheckboxGroupImpl, {
   Caption: CheckboxGroupCaption,
   Label: CheckboxGroupLabel,
   Validation: CheckboxGroupValidation,

@@ -11,7 +11,13 @@ import type {
   RadioGroupValidationProps,
 } from './RadioGroup'
 
-const RadioGroup = Object.assign(RadioGroupImpl, {
+type RadioGroupComponent = typeof RadioGroupImpl & {
+  Caption: typeof RadioGroupCaption
+  Label: typeof RadioGroupLabel
+  Validation: typeof RadioGroupValidation
+}
+
+const RadioGroup: RadioGroupComponent = Object.assign(RadioGroupImpl, {
   Caption: RadioGroupCaption,
   Label: RadioGroupLabel,
   Validation: RadioGroupValidation,

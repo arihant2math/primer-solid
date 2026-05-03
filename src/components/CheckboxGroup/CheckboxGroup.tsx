@@ -4,9 +4,12 @@ import {
   ChoiceInputGroupLabel,
   ChoiceInputGroupRoot,
   ChoiceInputGroupValidation,
+  type ChoiceInputGroupCaptionComponent,
   type ChoiceInputGroupCaptionProps,
+  type ChoiceInputGroupLabelComponent,
   type ChoiceInputGroupLabelProps,
   type ChoiceInputGroupProps,
+  type ChoiceInputGroupValidationComponent,
   type ChoiceInputGroupValidationProps,
 } from '../_ChoiceInputGroup/ChoiceInputGroup'
 import {
@@ -73,9 +76,12 @@ CheckboxGroupImpl.displayName = 'CheckboxGroup'
 ;(CheckboxGroupImpl as typeof CheckboxGroupImpl & { __SLOT__?: symbol }).__SLOT__ =
   Symbol('CheckboxGroup')
 
-export const CheckboxGroupLabel = ChoiceInputGroupLabel
-export const CheckboxGroupCaption = ChoiceInputGroupCaption
-export const CheckboxGroupValidation = ChoiceInputGroupValidation
+export const CheckboxGroupLabel: ChoiceInputGroupLabelComponent =
+  ChoiceInputGroupLabel
+export const CheckboxGroupCaption: ChoiceInputGroupCaptionComponent =
+  ChoiceInputGroupCaption
+export const CheckboxGroupValidation: ChoiceInputGroupValidationComponent =
+  ChoiceInputGroupValidation
 
 export type {
   ChoiceInputGroupCaptionProps as CheckboxGroupCaptionProps,

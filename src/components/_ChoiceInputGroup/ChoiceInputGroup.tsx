@@ -107,6 +107,17 @@ function CheckCircleFillIcon(props: { class?: string }) {
   )
 }
 
+type ChoiceInputGroupSlotComponent<Props> = ((props: Props) => JSX.Element) & {
+  __SLOT__?: symbol
+}
+
+export type ChoiceInputGroupLabelComponent =
+  ChoiceInputGroupSlotComponent<ChoiceInputGroupLabelProps>
+export type ChoiceInputGroupCaptionComponent =
+  ChoiceInputGroupSlotComponent<ChoiceInputGroupCaptionProps>
+export type ChoiceInputGroupValidationComponent =
+  ChoiceInputGroupSlotComponent<ChoiceInputGroupValidationProps>
+
 function ChoiceInputGroupLabelImpl(props: ChoiceInputGroupLabelProps) {
   return createChoiceInputGroupSlot('label', props)
 }
@@ -328,16 +339,12 @@ ChoiceInputGroupCaptionImpl.displayName = 'ChoiceInputGroup.Caption'
 ChoiceInputGroupValidationImpl.displayName = 'ChoiceInputGroup.Validation'
 ChoiceInputGroupRoot.displayName = 'ChoiceInputGroup'
 
-export const ChoiceInputGroupLabel = ChoiceInputGroupLabelImpl as typeof ChoiceInputGroupLabelImpl & {
-  __SLOT__?: symbol
-}
-export const ChoiceInputGroupCaption = ChoiceInputGroupCaptionImpl as typeof ChoiceInputGroupCaptionImpl & {
-  __SLOT__?: symbol
-}
-export const ChoiceInputGroupValidation =
-  ChoiceInputGroupValidationImpl as typeof ChoiceInputGroupValidationImpl & {
-    __SLOT__?: symbol
-  }
+export const ChoiceInputGroupLabel: ChoiceInputGroupLabelComponent =
+  ChoiceInputGroupLabelImpl
+export const ChoiceInputGroupCaption: ChoiceInputGroupCaptionComponent =
+  ChoiceInputGroupCaptionImpl
+export const ChoiceInputGroupValidation: ChoiceInputGroupValidationComponent =
+  ChoiceInputGroupValidationImpl
 
 ChoiceInputGroupLabel.__SLOT__ = Symbol('ChoiceInputGroupLabel')
 ChoiceInputGroupCaption.__SLOT__ = Symbol('ChoiceInputGroupCaption')

@@ -4,9 +4,12 @@ import {
   ChoiceInputGroupLabel,
   ChoiceInputGroupRoot,
   ChoiceInputGroupValidation,
+  type ChoiceInputGroupCaptionComponent,
   type ChoiceInputGroupCaptionProps,
+  type ChoiceInputGroupLabelComponent,
   type ChoiceInputGroupLabelProps,
   type ChoiceInputGroupProps,
+  type ChoiceInputGroupValidationComponent,
   type ChoiceInputGroupValidationProps,
 } from '../_ChoiceInputGroup/ChoiceInputGroup'
 import { RadioGroupContext, RadioGroupProvider } from './RadioGroupContext'
@@ -69,9 +72,12 @@ RadioGroupImpl.displayName = 'RadioGroup'
 ;(RadioGroupImpl as typeof RadioGroupImpl & { __SLOT__?: symbol }).__SLOT__ =
   Symbol('RadioGroup')
 
-export const RadioGroupLabel = ChoiceInputGroupLabel
-export const RadioGroupCaption = ChoiceInputGroupCaption
-export const RadioGroupValidation = ChoiceInputGroupValidation
+export const RadioGroupLabel: ChoiceInputGroupLabelComponent =
+  ChoiceInputGroupLabel
+export const RadioGroupCaption: ChoiceInputGroupCaptionComponent =
+  ChoiceInputGroupCaption
+export const RadioGroupValidation: ChoiceInputGroupValidationComponent =
+  ChoiceInputGroupValidation
 
 export type {
   ChoiceInputGroupCaptionProps as RadioGroupCaptionProps,
