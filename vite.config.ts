@@ -2,7 +2,13 @@ import { defineConfig } from 'vite'
 import solid from 'vite-plugin-solid'
 import dts from 'vite-plugin-dts'
 
-const external = ['solid-js', 'solid-js/web', 'solid-js/store', 'clsx']
+const external = [
+  'solid-js',
+  'solid-js/web',
+  'solid-js/store',
+  'clsx',
+  '@primer/octicons',
+]
 
 export default defineConfig({
   plugins: [

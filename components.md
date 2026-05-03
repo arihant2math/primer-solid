@@ -53,7 +53,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [x] Link (hooks)
 - [ ] LinkButton (ButtonBase) (not implemented)
 - [ ] NavList (@primer/octicons-react, ActionList, useId) (not implemented)
-- [ ] Octicon (@primer/octicons-react) (not implemented)
+- [ ] Octicon (@primer/octicons-react) (partially implemented in `src/components/Octicon`; includes exported `octicons` data, `Octicon` component, sizing/accessibility behavior, and deprecated `icon` name alias, but still differs from upstream `@primer/octicons-react` component-based API)
 - [ ] Overlay (@primer/behaviors, FeatureFlags, Portal, hooks, useRefObjectAsForwardedRef) (not implemented)
 - [ ] PageHeader (@primer/octicons-react, Heading, Link, hooks, useResponsiveValue) (not implemented)
 - [ ] PageLayout (useId, useOverflow, useRefObjectAsForwardedRef, useResponsiveValue, useSlots) (not implemented)

@@ -5,7 +5,9 @@ import {
   Button,
   Card,
   Label,
+  Octicon,
   ThemeProvider,
+  octicons,
 } from '../index'
 
 describe('@primer/solid', () => {
@@ -46,5 +48,15 @@ describe('@primer/solid', () => {
       'href',
       '/tree/main',
     )
+  })
+
+  it('exports Octicon', () => {
+    const { container } = render(() => <Octicon name="mark-github" />)
+
+    expect(container.querySelector('[data-component="Octicon"]')).toBeInTheDocument()
+  })
+
+  it('exports octicons', () => {
+    expect(octicons['mark-github']).toBeDefined()
   })
 })

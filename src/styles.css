@@ -182,6 +182,13 @@ a {
   color: var(--fgColor-accent);
 }
 
+.octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
+  overflow: visible;
+}
+
 :focus-visible {
   outline: 2px solid var(--focus-outlineColor);
   outline-offset: 2px;
