@@ -89,7 +89,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] ThemeProvider (hooks, useSyncedState) (partially implemented in `src/components/ThemeProvider`; missing day/night schemes, auto/system mode, SSR handoff, deep theme merge, setters, `useColorSchemeVar` parity)
 - [ ] Timeline (none) (not implemented)
 - [ ] ToggleSwitch (DataTable, Spinner, VisuallyHidden, live-region, useSafeTimeout) (not implemented)
-- [ ] Token (VisuallyHidden) (not implemented)
+- [x] Token (VisuallyHidden)
 - [ ] Tooltip (TooltipV2/current) (@oddbird/popover-polyfill/fn, @primer/behaviors, KeybindingHint, VisuallyHidden, hooks, useSafeTimeout) (not implemented)
 - [ ] Tooltip (deprecated v1) (hooks) (not implemented)
 - [ ] TopicTag (none) (not implemented)
