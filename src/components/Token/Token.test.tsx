@@ -30,7 +30,11 @@ describe('Token', () => {
       <Token text="token" onRemove={onRemove} />
     ))
 
-    fireEvent.click(screen.getByRole('button', { name: 'Remove token' }))
+    const removeButton = screen.getByRole('button', { name: 'Remove token' })
+
+    expect(removeButton.querySelector('[data-component="Octicon"]')).toBeInTheDocument()
+
+    fireEvent.click(removeButton)
     fireEvent.keyDown(container.firstChild as HTMLElement, { key: 'Backspace' })
     fireEvent.keyDown(container.firstChild as HTMLElement, { key: 'Delete' })
 

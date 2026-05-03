@@ -168,6 +168,11 @@ describe('TextInput', () => {
         '[data-component="TextInput.CharacterCounter"] svg',
       ),
     ).toBeInTheDocument()
+    expect(
+      document.querySelector(
+        '[data-component="TextInput.CharacterCounter"] [data-component="Octicon"]',
+      ),
+    ).toBeInTheDocument()
   })
 
   it('renders character counter screen reader helpers', () => {

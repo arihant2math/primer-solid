@@ -192,6 +192,7 @@ describe('ActionList', () => {
     expect(indicator).toHaveAccessibleDescription(
       'Unavailable due to an outage',
     )
+    expect(indicator.querySelector('[data-component="Octicon"]')).toBeInTheDocument()
     expect(screen.getByText('Unavailable due to an outage')).toBeInTheDocument()
   })
 

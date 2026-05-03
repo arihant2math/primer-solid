@@ -96,7 +96,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] TopicTagGroup (TopicTag) (not implemented)
 - [ ] TreeView (@primer/octicons-react, ActionList, Button, ConfirmationDialog, Dialog, KeybindingHint, SkeletonAvatar, SkeletonText, Spinner, Text, Tooltip, VisuallyHidden, live-region, useControllableState, useId, useSafeTimeout, useSlots) (not implemented)
 - [ ] Truncate (none) (not implemented)
-- [ ] UnderlineNav (@primer/behaviors, @primer/octicons-react, ActionList, Button, CounterLabel, VisuallyHidden, useId, useOnEscapePress, useOnOutsideClick, useResizeObserver) (not implemented)
+- [ ] UnderlineNav (@primer/behaviors, @primer/octicons-react, ActionList, Button, CounterLabel, VisuallyHidden, useId, useOnEscapePress, useOnOutsideClick, useResizeObserver) (partially implemented in `src/components/UnderlineNav`; includes `UnderlineNav.Item`, current item styling, counters/loading counters, icons/leadingVisual, hidden heading + nav labelling, `flush`/`inset` variants, custom `as`, and responsive overflow menu with More button; still missing full upstream anchored-position fidelity and broader integration parity)
 - [ ] UnderlineNav (deprecated) (none) (not implemented)
 - [ ] UnderlinePanels (experimental) (@github/tab-container-element, @primer/octicons-react, hooks, useResizeObserver) (not implemented)
 - [x] VisuallyHidden (none)

@@ -2,6 +2,7 @@ import { Show, children as resolveChildren, createMemo, createUniqueId, splitPro
 import type { JSX } from 'solid-js'
 import { mergeClassNames } from '../../utils'
 import { assignRef, type RefProp } from '../../utils/solid'
+import { Octicon } from '../Octicon'
 import { VisuallyHidden } from '../VisuallyHidden'
 import styles from './ChoiceInputGroup.module.css'
 
@@ -74,36 +75,6 @@ function isChoiceInputGroupSlot(value: unknown): value is ChoiceInputGroupSlot {
     typeof value === 'object' &&
     value !== null &&
     (value as Partial<ChoiceInputGroupSlot>)[CHOICE_INPUT_GROUP_SLOT] === true
-  )
-}
-
-function AlertFillIcon(props: { class?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      class={props.class}
-      viewBox="0 0 16 16"
-      width="12"
-      height="12"
-      fill="currentColor"
-    >
-      <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l5.13 9.604A1.75 1.75 0 0 1 13.13 13.5H2.87a1.75 1.75 0 0 1-1.543-2.849ZM9 11.25a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM8 4.5a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 4.5Z" />
-    </svg>
-  )
-}
-
-function CheckCircleFillIcon(props: { class?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      class={props.class}
-      viewBox="0 0 16 16"
-      width="12"
-      height="12"
-      fill="currentColor"
-    >
-      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM6.78 11.03 3.97 8.22a.75.75 0 0 1 1.06-1.06l1.75 1.75 4.19-4.19a.75.75 0 1 1 1.06 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0Z" />
-    </svg>
   )
 }
 
@@ -187,7 +158,8 @@ function renderValidation(
   ariaHidden: boolean,
 ) {
   const props = slot.props as ChoiceInputGroupValidationProps
-  const Icon = props.variant === 'success' ? CheckCircleFillIcon : AlertFillIcon
+  const iconName = () =>
+    props.variant === 'success' ? 'check-circle-fill' : 'alert-fill'
 
   return (
     <div
@@ -197,7 +169,7 @@ function renderValidation(
       aria-hidden={ariaHidden ? 'true' : undefined}
     >
       <span class={styles.ValidationIcon}>
-        <Icon />
+        <Octicon name={iconName()} size={12} />
       </span>
       <span class={styles.ValidationText}>{props.children}</span>
     </div>

@@ -16,6 +16,7 @@ import { assignRef, callEventHandler, type RefProp } from '../../utils/solid'
 import { ButtonBase } from '../Button'
 import { Heading as PrimerHeading } from '../Heading'
 import { Link } from '../Link'
+import { Octicon } from '../Octicon'
 import { Spinner } from '../Spinner'
 import { VisuallyHidden } from '../VisuallyHidden'
 import groupStyles from './Group.module.css'
@@ -272,35 +273,6 @@ function isSlot<T extends SlotType>(
   return type ? slot.type === type : true
 }
 
-function ActionListCheckIcon(props: { class?: string }) {
-  return (
-    <svg
-      class={props.class}
-      aria-hidden="true"
-      viewBox="0 0 16 16"
-      width="16"
-      height="16"
-      fill="currentColor"
-    >
-      <path d="M13.78 3.22a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0L2.22 6.28a.75.75 0 1 1 1.06-1.06L7 8.94l5.72-5.72a.75.75 0 0 1 1.06 0Z" />
-    </svg>
-  )
-}
-
-function ActionListAlertIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 16 16"
-      width="16"
-      height="16"
-      fill="currentColor"
-    >
-      <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l5.13 9.604A1.75 1.75 0 0 1 13.13 13.5H2.87a1.75 1.75 0 0 1-1.543-2.849ZM8 4.5a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 4.5Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" />
-    </svg>
-  )
-}
-
 function getStringChild(children: unknown) {
   return typeof children === 'string' ? children : undefined
 }
@@ -428,7 +400,7 @@ function renderSelection(
           </Show>
         }
       >
-        <ActionListCheckIcon class={styles.SingleSelectCheckmark} />
+        <Octicon name="check" class={styles.SingleSelectCheckmark} />
       </Show>
     </span>
   )
@@ -1194,7 +1166,7 @@ export function Item(props: ActionListItemProps) {
                   : styles.TrailingVisual,
               )}
             >
-              <ActionListAlertIcon />
+              <Octicon name="alert" />
             </span>
           </button>
         </span>

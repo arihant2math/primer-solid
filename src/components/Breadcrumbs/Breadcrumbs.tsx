@@ -12,6 +12,7 @@ import {
 import type { ComponentProps, JSX, ValidComponent } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { Details } from '../Details'
+import { Octicon } from '../Octicon'
 import { useOnEscapePress } from '../../hooks/useOnEscapePress'
 import { useOnOutsideClick } from '../../hooks/useOnOutsideClick'
 import { useResizeObserver } from '../../hooks/useResizeObserver'
@@ -76,14 +77,6 @@ function assignRef<T>(ref: Ref<T>, element: T) {
   } else if (ref) {
     ref.current = element
   }
-}
-
-function KebabHorizontalIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-      <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5-1.5A1.5 1.5 0 1 1 16 7.5a1.5 1.5 0 0 1-3 0Z" />
-    </svg>
-  )
 }
 
 function ItemSeparator() {
@@ -190,7 +183,7 @@ function BreadcrumbsMenuItem(props: BreadcrumbsMenuItemProps) {
         class={styles.MenuSummary}
         onClick={handleSummaryClick}
       >
-        <KebabHorizontalIcon />
+        <Octicon name="kebab-horizontal" />
       </summary>
       <Show when={isOpen()}>
         <div ref={menuContainerRef} class={styles.MenuOverlay}>

@@ -87,9 +87,12 @@ describe('Breadcrumbs', () => {
       </Breadcrumbs>
     ))
 
-    expect(
-      screen.getByRole('button', { name: /more breadcrumb items/i }),
-    ).toBeInTheDocument()
+    const menuButton = screen.getByRole('button', {
+      name: /more breadcrumb items/i,
+    })
+
+    expect(menuButton).toBeInTheDocument()
+    expect(menuButton.querySelector('[data-component="Octicon"]')).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: 'Item 1' })).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: 'Item 2' })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Item 3' })).toBeInTheDocument()

@@ -10,6 +10,7 @@ import {
 } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { mergeClassNames, mergeStyles } from '../../utils'
+import { Octicon } from '../Octicon'
 import { Text } from '../Text'
 import { VisuallyHidden } from '../VisuallyHidden'
 import { CharacterCounter } from './character-counter'
@@ -54,23 +55,6 @@ function renderVisual(visual: VisualProp | undefined) {
   }
 
   return visual
-}
-
-function AlertFillIcon(props: { size?: number; class?: string }) {
-  const size = () => props.size ?? 16
-
-  return (
-    <svg
-      aria-hidden="true"
-      class={props.class}
-      viewBox="0 0 16 16"
-      width={size()}
-      height={size()}
-      fill="currentColor"
-    >
-      <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l5.13 9.604A1.75 1.75 0 0 1 13.13 13.5H2.87a1.75 1.75 0 0 1-1.543-2.849ZM9 11.25a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM8 4.5a.75.75 0 0 0-.75.75v3.5a.75.75 0 0 0 1.5 0v-3.5A.75.75 0 0 0 8 4.5Z" />
-    </svg>
-  )
 }
 
 function Spinner(props: { class?: string; size?: 'small' | 'medium' }) {
@@ -624,7 +608,7 @@ function TextInputImpl(props: TextInputProps) {
           data-component="TextInput.CharacterCounter"
         >
           <Show when={isOverLimit()}>
-            <AlertFillIcon size={16} />
+            <Octicon name="alert-fill" size={16} />
           </Show>
           {characterCount()}
         </Text>
