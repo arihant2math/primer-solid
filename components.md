@@ -61,7 +61,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] Pagination (@primer/octicons-react, useResponsiveValue) (not implemented)
 - [ ] Popover (hooks) (not implemented)
 - [ ] Portal (none) (not implemented)
-- [ ] ProgressBar (none) (not implemented)
+- [x] ProgressBar (none)
 - [ ] Radio (Checkbox, RadioGroup) (partially implemented in `src/components/Radio`; includes native radio behavior, group integration, warnings for missing names, and CSS module styling, but still needs full upstream parity)
 - [ ] RadioGroup (hooks) (partially implemented in `src/components/RadioGroup`; includes labelled fieldset/group semantics, caption/validation slots, disabled/required handling, and selected value aggregation, but still needs full upstream parity)
 - [ ] RelativeTime (@github/relative-time-element) (not implemented)

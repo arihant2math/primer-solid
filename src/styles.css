@@ -70,6 +70,13 @@
   --bgColor-accent-emphasis: #0969da;
   --bgColor-success-emphasis: #1f883d;
   --bgColor-danger-emphasis: #cf222e;
+  --bgColor-attention-emphasis: #9a6700;
+  --bgColor-severe-emphasis: #bc4c00;
+  --bgColor-done-emphasis: #8250df;
+  --bgColor-sponsor-emphasis: #bf3989;
+  --bgColor-sponsors-emphasis: #bf3989;
+  --progressBar-track-bgColor: var(--bgColor-neutral-muted);
+  --progressBar-track-borderColor: var(--borderColor-default);
   --button-default-bgColor-rest: #f6f8fa;
   --button-default-bgColor-hover: #eff2f5;
   --button-default-borderColor-rest: #d1d9e0;
@@ -112,6 +119,13 @@
   --bgColor-accent-emphasis: #1f6feb;
   --bgColor-success-emphasis: #238636;
   --bgColor-danger-emphasis: #da3633;
+  --bgColor-attention-emphasis: #9e6a03;
+  --bgColor-severe-emphasis: #bd561d;
+  --bgColor-done-emphasis: #8957e5;
+  --bgColor-sponsor-emphasis: #bf4b8a;
+  --bgColor-sponsors-emphasis: #bf4b8a;
+  --progressBar-track-bgColor: var(--bgColor-neutral-muted);
+  --progressBar-track-borderColor: var(--borderColor-default);
   --button-default-bgColor-rest: #212830;
   --button-default-bgColor-hover: #262c36;
   --button-default-borderColor-rest: #3d444d;
