@@ -99,4 +99,4 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] UnderlineNav (@primer/behaviors, @primer/octicons-react, ActionList, Button, CounterLabel, VisuallyHidden, useId, useOnEscapePress, useOnOutsideClick, useResizeObserver) (not implemented)
 - [ ] UnderlineNav (deprecated) (none) (not implemented)
 - [ ] UnderlinePanels (experimental) (@github/tab-container-element, @primer/octicons-react, hooks, useResizeObserver) (not implemented)
-- [ ] VisuallyHidden (none) (partially implemented in `src/components/VisuallyHidden`; missing React focus/active/focus-within reveal behavior and span-only API parity)
+- [x] VisuallyHidden (none)
