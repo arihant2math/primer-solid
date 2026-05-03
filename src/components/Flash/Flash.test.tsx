@@ -75,4 +75,12 @@ describe('Flash', () => {
 
     expect(container.firstChild).toHaveAttribute('data-testid', 'test')
   })
+
+  it('forwards refs', () => {
+    let element: HTMLDivElement | undefined
+
+    render(() => <Flash ref={(node) => (element = node)} />)
+
+    expect(element?.nodeName).toBe('DIV')
+  })
 })

@@ -10,6 +10,8 @@ type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends unknown
   ? Omit<T, TOmitted>
   : never
 
+type Ref<T> = ((element: T) => void) | { current?: T | null } | undefined
+
 type FlashOwnProps<As extends ValidComponent> = {
   as?: As
   children?: JSX.Element
@@ -26,6 +28,14 @@ export type FlashProps<As extends ValidComponent = 'div'> = DistributiveOmit<
 > &
   FlashOwnProps<As>
 
+function assignRef<T>(ref: Ref<T>, element: T) {
+  if (typeof ref === 'function') {
+    ref(element)
+  } else if (ref) {
+    ref.current = element
+  }
+}
+
 export function Flash<As extends ValidComponent = 'div'>(
   props: FlashProps<As>,
 ) {
@@ -35,6 +45,7 @@ export function Flash<As extends ValidComponent = 'div'>(
     'class',
     'className',
     'full',
+    'ref',
     'variant',
   ])
   const Component = Dynamic as unknown as (
@@ -46,6 +57,7 @@ export function Flash<As extends ValidComponent = 'div'>(
     <Component
       component={local.as ?? 'div'}
       {...rest}
+      ref={(element: unknown) => assignRef(local.ref as Ref<unknown>, element)}
       class={mergeClassNames(styles.Flash, local.className, local.class)}
       data-full={local.full ? '' : undefined}
       data-variant={variant()}
@@ -54,5 +66,7 @@ export function Flash<As extends ValidComponent = 'div'>(
     </Component>
   )
 }
+
+Flash.displayName = 'Flash'
 
 export default Flash
