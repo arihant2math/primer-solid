@@ -76,7 +76,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] SkeletonText (SkeletonBox) (not implemented)
 - [x] Spinner (VisuallyHidden, hooks, useMedia)
 - [ ] SplitPageLayout (PageLayout) (not implemented)
-- [ ] Stack (useResponsiveValue) (partially implemented in `src/components/Stack`; missing responsive props, padding props, Stack.Item, and several scale values)
+- [x] Stack
 - [ ] StateLabel (@primer/octicons-react, Octicon) (not implemented)
 - [ ] SubNav (none) (not implemented)
 - [ ] TabNav (useFocusZone) (not implemented)

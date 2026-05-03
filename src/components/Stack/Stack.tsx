@@ -1,91 +1,192 @@
 import { splitProps } from 'solid-js'
-import type { JSX } from 'solid-js'
+import type { ComponentProps, JSX, ValidComponent } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
-import { mergeClassNames, mergeStyles } from '../../utils'
-import type { ElementType, SxProp } from '../../types'
+import {
+  getResponsiveAttributes,
+  mapResponsiveValue,
+  mergeClassNames,
+  mergeStyles,
+} from '../../utils'
+import type { SxProp } from '../../types'
+import type { ResponsiveValue } from '../../utils'
 import styles from './Stack.module.css'
 
-export type StackDirection = 'vertical' | 'horizontal'
-export type StackAlign = 'start' | 'center' | 'end' | 'stretch'
-export type StackJustify = 'start' | 'center' | 'end' | 'between'
-export type StackGap = 'none' | 'condensed' | 'normal' | 'spacious'
+export type { ResponsiveValue } from '../../utils'
 
-export type StackProps<T extends ElementType = 'div'> = SxProp &
-  JSX.HTMLAttributes<HTMLElement> & {
-    align?: StackAlign
-    as?: T
-    children?: JSX.Element
-    direction?: StackDirection
-    gap?: StackGap | number
-    justify?: StackJustify
-    wrap?: boolean
-  }
+type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends unknown
+  ? Omit<T, TOmitted>
+  : never
 
-const directionClass: Record<StackDirection, string> = {
-  vertical: styles.StackVertical,
-  horizontal: styles.StackHorizontal,
+export type StackGapScale =
+  | 'none'
+  | 'tight'
+  | 'condensed'
+  | 'cozy'
+  | 'normal'
+  | 'spacious'
+export type StackGap = StackGapScale | ResponsiveValue<StackGapScale>
+
+export type StackDirectionScale = 'vertical' | 'horizontal'
+export type StackDirection =
+  | StackDirectionScale
+  | ResponsiveValue<StackDirectionScale>
+
+export type StackAlignScale =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'stretch'
+  | 'baseline'
+export type StackAlign = StackAlignScale | ResponsiveValue<StackAlignScale>
+
+export type StackWrapScale = 'wrap' | 'nowrap'
+export type StackWrap = StackWrapScale | ResponsiveValue<StackWrapScale>
+
+export type StackJustifyScale =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'space-between'
+  | 'space-evenly'
+export type StackJustifyCompatScale = StackJustifyScale | 'between'
+export type StackJustify =
+  | StackJustifyCompatScale
+  | ResponsiveValue<StackJustifyCompatScale>
+
+export type StackPaddingScale =
+  | 'none'
+  | 'tight'
+  | 'condensed'
+  | 'cozy'
+  | 'normal'
+  | 'spacious'
+export type StackPadding = StackPaddingScale | ResponsiveValue<StackPaddingScale>
+
+type StackOwnProps<As extends ValidComponent> = SxProp & {
+  align?: StackAlign
+  as?: As
+  children?: JSX.Element
+  class?: string
+  /** React compatibility alias. Prefer `class` in Solid code. */
+  className?: string
+  direction?: StackDirection
+  gap?: StackGap | number
+  justify?: StackJustify
+  padding?: StackPadding
+  paddingBlock?: StackPadding
+  paddingInline?: StackPadding
+  wrap?: StackWrap | boolean
 }
 
-const alignClass: Record<StackAlign, string> = {
-  start: styles.StackAlignStart,
-  center: styles.StackAlignCenter,
-  end: styles.StackAlignEnd,
-  stretch: styles.StackAlignStretch,
+export type StackProps<As extends ValidComponent = 'div'> = DistributiveOmit<
+  ComponentProps<As>,
+  keyof StackOwnProps<As> | 'className'
+> &
+  StackOwnProps<As>
+
+type StackItemOwnProps<As extends ValidComponent> = SxProp & {
+  as?: As
+  children?: JSX.Element
+  class?: string
+  /** React compatibility alias. Prefer `class` in Solid code. */
+  className?: string
+  grow?: boolean | ResponsiveValue<boolean>
+  shrink?: boolean | ResponsiveValue<boolean>
 }
 
-const justifyClass: Record<StackJustify, string> = {
-  start: styles.StackJustifyStart,
-  center: styles.StackJustifyCenter,
-  end: styles.StackJustifyEnd,
-  between: styles.StackJustifyBetween,
+export type StackItemProps<As extends ValidComponent = 'div'> =
+  DistributiveOmit<
+    ComponentProps<As>,
+    keyof StackItemOwnProps<As> | 'className'
+  > &
+    StackItemOwnProps<As>
+
+function normalizeJustifyValue(value: StackJustifyCompatScale): StackJustifyScale {
+  return value === 'between' ? 'space-between' : value
 }
 
-const gapValue: Record<StackGap, string> = {
-  none: '0',
-  condensed: 'var(--base-size-4)',
-  normal: 'var(--base-size-8)',
-  spacious: 'var(--base-size-16)',
+function normalizeWrapValue(value: StackWrapScale | boolean): StackWrapScale {
+  return typeof value === 'boolean' ? (value ? 'wrap' : 'nowrap') : value
 }
 
-export function Stack<T extends ElementType = 'div'>(props: StackProps<T>) {
+export function StackImpl<As extends ValidComponent = 'div'>(
+  props: StackProps<As>,
+) {
   const [local, rest] = splitProps(props, [
     'align',
     'as',
     'children',
     'class',
+    'className',
     'direction',
     'gap',
     'justify',
+    'padding',
+    'paddingBlock',
+    'paddingInline',
     'style',
     'sx',
     'wrap',
   ])
-  const Component = Dynamic as unknown as (
-    componentProps: Record<string, unknown>,
-  ) => JSX.Element
-  const direction = () => local.direction ?? 'vertical'
-  const align = () => local.align ?? 'stretch'
-  const justify = () => local.justify ?? 'start'
-  const gap = () =>
-    typeof local.gap === 'number'
-      ? `${local.gap}px`
-      : gapValue[local.gap ?? 'normal']
+
+  const normalizedAlign = () => local.align ?? 'stretch'
+  const normalizedDirection = () => local.direction ?? 'vertical'
+  const normalizedGap = () =>
+    typeof local.gap === 'number' ? undefined : local.gap
+  const normalizedJustify = () =>
+    mapResponsiveValue(local.justify ?? 'start', normalizeJustifyValue)
+  const normalizedPadding = () => local.padding ?? 'none'
+  const normalizedWrap = () =>
+    mapResponsiveValue(local.wrap ?? 'nowrap', normalizeWrapValue)
 
   return (
-    <Component
+    <Dynamic
       component={local.as ?? 'div'}
       {...rest}
-      class={mergeClassNames(
-        styles.Stack,
-        directionClass[direction()],
-        alignClass[align()],
-        justifyClass[justify()],
-        local.wrap && styles.StackWrap,
-        local.class,
+      class={mergeClassNames(styles.Stack, local.className, local.class)}
+      {...getResponsiveAttributes('align', normalizedAlign())}
+      {...getResponsiveAttributes('direction', normalizedDirection())}
+      {...getResponsiveAttributes('gap', normalizedGap())}
+      {...getResponsiveAttributes('justify', normalizedJustify())}
+      {...getResponsiveAttributes('padding', normalizedPadding())}
+      {...getResponsiveAttributes('padding-block', local.paddingBlock)}
+      {...getResponsiveAttributes('padding-inline', local.paddingInline)}
+      {...getResponsiveAttributes('wrap', normalizedWrap())}
+      style={mergeStyles(
+        typeof local.gap === 'number' ? { gap: `${local.gap}px` } : undefined,
+        local.style,
+        local.sx,
       )}
-      style={mergeStyles({ gap: gap() }, local.style, local.sx)}
     >
       {local.children}
-    </Component>
+    </Dynamic>
+  )
+}
+
+export function StackItem<As extends ValidComponent = 'div'>(
+  props: StackItemProps<As>,
+) {
+  const [local, rest] = splitProps(props, [
+    'as',
+    'children',
+    'class',
+    'className',
+    'grow',
+    'shrink',
+    'style',
+    'sx',
+  ])
+
+  return (
+    <Dynamic
+      component={local.as ?? 'div'}
+      {...rest}
+      class={mergeClassNames(styles.StackItem, local.className, local.class)}
+      {...getResponsiveAttributes('grow', local.grow)}
+      {...getResponsiveAttributes('shrink', local.shrink)}
+      style={mergeStyles(local.style, local.sx)}
+    >
+      {local.children}
+    </Dynamic>
   )
 }
