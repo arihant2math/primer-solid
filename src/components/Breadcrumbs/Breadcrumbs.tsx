@@ -12,7 +12,7 @@ import {
 import type { ComponentProps, JSX, ValidComponent } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { Details } from '../Details'
-import { Octicon } from '../Octicon'
+import { KebabHorizontalIcon } from '../Octicon'
 import { useOnEscapePress } from '../../hooks/useOnEscapePress'
 import { useOnOutsideClick } from '../../hooks/useOnOutsideClick'
 import { useResizeObserver } from '../../hooks/useResizeObserver'
@@ -82,8 +82,17 @@ function assignRef<T>(ref: Ref<T>, element: T) {
 function ItemSeparator() {
   return (
     <span class={styles.ItemSeparator}>
-      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M10.956 1.27994L6.06418 14.7201L5 14.7201L9.89181 1.27994L10.956 1.27994Z" fill="currentColor" />
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M10.956 1.27994L6.06418 14.7201L5 14.7201L9.89181 1.27994L10.956 1.27994Z"
+          fill="currentColor"
+        />
       </svg>
     </span>
   )
@@ -178,19 +187,24 @@ function BreadcrumbsMenuItem(props: BreadcrumbsMenuItemProps) {
           menuButtonRef = element
         }}
         role="button"
-        aria-label={props['aria-label'] || `${props.items.length} more breadcrumb items`}
+        aria-label={
+          props['aria-label'] || `${props.items.length} more breadcrumb items`
+        }
         aria-expanded={isOpen() ? 'true' : 'false'}
         class={styles.MenuSummary}
         onClick={handleSummaryClick}
       >
-        <Octicon name="kebab-horizontal" />
+        <KebabHorizontalIcon />
       </summary>
       <Show when={isOpen()}>
         <div ref={menuContainerRef} class={styles.MenuOverlay}>
           <ul class={styles.MenuList}>
             {props.items.map((item) => (
               <li class={styles.MenuListItem}>
-                <RenderedBreadcrumbItem {...item.props} itemClass={styles.MenuLink} />
+                <RenderedBreadcrumbItem
+                  {...item.props}
+                  itemClass={styles.MenuLink}
+                />
               </li>
             ))}
           </ul>
@@ -216,7 +230,12 @@ function calculateOverflow(
   const hideRoot = overflow === 'menu'
   let minimumVisibleItems = hideRoot ? 4 : 3
 
-  if (hideRoot && availableWidth > 0 && availableWidth < 544 && items.length > 2) {
+  if (
+    hideRoot &&
+    availableWidth > 0 &&
+    availableWidth < 544 &&
+    items.length > 2
+  ) {
     minimumVisibleItems = 1
   }
 
@@ -238,7 +257,9 @@ function calculateOverflow(
 
 function BreadcrumbsRoot(props: BreadcrumbsProps) {
   let containerRef: HTMLElement | undefined
-  const [registeredItems, setRegisteredItems] = createSignal<Array<RegisteredBreadcrumbItem>>([])
+  const [registeredItems, setRegisteredItems] = createSignal<
+    Array<RegisteredBreadcrumbItem>
+  >([])
   const [containerWidth, setContainerWidth] = createSignal(0)
   const [local, rest] = splitProps(props, [
     'children',
@@ -305,10 +326,17 @@ function BreadcrumbsRoot(props: BreadcrumbsProps) {
     ))
 
     if (menuContents.length === 0) {
-      if (!effectiveHideRoot && rootItem && !visibleItems.some((item) => item.id === rootItem.id)) {
+      if (
+        !effectiveHideRoot &&
+        rootItem &&
+        !visibleItems.some((item) => item.id === rootItem.id)
+      ) {
         return [
           <li class={styles.BreadcrumbsItem}>
-            <RenderedBreadcrumbItem {...rootItem.props} itemClass={styles.Item} />
+            <RenderedBreadcrumbItem
+              {...rootItem.props}
+              itemClass={styles.Item}
+            />
             <ItemSeparator />
           </li>,
           ...visibleElements,
@@ -350,7 +378,11 @@ function BreadcrumbsRoot(props: BreadcrumbsProps) {
           containerRef = element
           assignRef(local.ref, element)
         }}
-        class={mergeClassNames(local.className, local.class, styles.BreadcrumbsBase)}
+        class={mergeClassNames(
+          local.className,
+          local.class,
+          styles.BreadcrumbsBase,
+        )}
         aria-label="Breadcrumbs"
         data-overflow={overflow()}
         data-variant={variant()}
@@ -370,7 +402,12 @@ function BreadcrumbsItem<As extends ValidComponent = 'a'>(
   const context = useContext(BreadcrumbsContext)
 
   if (!context) {
-    return <RenderedBreadcrumbItem {...(props as BreadcrumbsItemProps<ValidComponent>)} itemClass={styles.Item} />
+    return (
+      <RenderedBreadcrumbItem
+        {...(props as BreadcrumbsItemProps<ValidComponent>)}
+        itemClass={styles.Item}
+      />
+    )
   }
 
   const id = createUniqueId()

@@ -4,7 +4,9 @@ import {
   BranchName,
   Button,
   Card,
+  Flash,
   Label,
+  MarkGithubIcon,
   Octicon,
   ThemeProvider,
   octicons,
@@ -41,6 +43,12 @@ describe('@primer/solid', () => {
     expect(screen.getByText('Beta')).toBeInTheDocument()
   })
 
+  it('exports Flash', () => {
+    render(() => <Flash>Notice</Flash>)
+
+    expect(screen.getByText('Notice')).toBeInTheDocument()
+  })
+
   it('exports BranchName', () => {
     render(() => <BranchName href="/tree/main">main</BranchName>)
 
@@ -51,9 +59,17 @@ describe('@primer/solid', () => {
   })
 
   it('exports Octicon', () => {
-    const { container } = render(() => <Octicon name="mark-github" />)
+    const { container } = render(() => <Octicon icon={MarkGithubIcon} />)
 
-    expect(container.querySelector('[data-component="Octicon"]')).toBeInTheDocument()
+    expect(
+      container.querySelector('[data-component="Octicon"]'),
+    ).toBeInTheDocument()
+  })
+
+  it('exports icon components', () => {
+    const { container } = render(() => <MarkGithubIcon />)
+
+    expect(container.querySelector('.octicon-mark-github')).toBeInTheDocument()
   })
 
   it('exports octicons', () => {

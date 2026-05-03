@@ -1,7 +1,7 @@
 import { splitProps } from 'solid-js'
 import type { JSX } from 'solid-js'
 import { mergeClassNames, mergeStyles } from '../../utils'
-import { Octicon } from '../Octicon'
+import { XIcon } from '../Octicon'
 import { defaultTokenSize, type TokenSizeKeys } from './TokenBase'
 import styles from './_RemoveTokenButton.module.css'
 
@@ -53,7 +53,7 @@ export function RemoveTokenButton(props: RemoveTokenButtonProps) {
         )}
         style={style()}
       >
-        <Octicon name="x" size={iconSize()} />
+        <XIcon size={iconSize()} />
       </span>
     )
   }
@@ -67,7 +67,7 @@ export function RemoveTokenButton(props: RemoveTokenButtonProps) {
       style={style()}
       type="button"
     >
-      <Octicon name="x" size={iconSize()} />
+      <XIcon size={iconSize()} />
     </button>
   )
 }

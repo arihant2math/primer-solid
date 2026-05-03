@@ -1,8 +1,14 @@
-import { Show, children as resolveChildren, createMemo, createUniqueId, splitProps } from 'solid-js'
+import {
+  Show,
+  children as resolveChildren,
+  createMemo,
+  createUniqueId,
+  splitProps,
+} from 'solid-js'
 import type { JSX } from 'solid-js'
 import { mergeClassNames } from '../../utils'
 import { assignRef, type RefProp } from '../../utils/solid'
-import { Octicon } from '../Octicon'
+import { AlertFillIcon, CheckCircleFillIcon } from '../Octicon'
 import { VisuallyHidden } from '../VisuallyHidden'
 import styles from './ChoiceInputGroup.module.css'
 
@@ -97,7 +103,9 @@ function ChoiceInputGroupCaptionImpl(props: ChoiceInputGroupCaptionProps) {
   return createChoiceInputGroupSlot('caption', props)
 }
 
-function ChoiceInputGroupValidationImpl(props: ChoiceInputGroupValidationProps) {
+function ChoiceInputGroupValidationImpl(
+  props: ChoiceInputGroupValidationProps,
+) {
   return createChoiceInputGroupSlot('validation', props)
 }
 
@@ -158,9 +166,6 @@ function renderValidation(
   ariaHidden: boolean,
 ) {
   const props = slot.props as ChoiceInputGroupValidationProps
-  const iconName = () =>
-    props.variant === 'success' ? 'check-circle-fill' : 'alert-fill'
-
   return (
     <div
       id={id}
@@ -169,7 +174,12 @@ function renderValidation(
       aria-hidden={ariaHidden ? 'true' : undefined}
     >
       <span class={styles.ValidationIcon}>
-        <Octicon name={iconName()} size={12} />
+        <Show
+          when={props.variant === 'success'}
+          fallback={<AlertFillIcon size={12} />}
+        >
+          <CheckCircleFillIcon size={12} />
+        </Show>
       </span>
       <span class={styles.ValidationText}>{props.children}</span>
     </div>
@@ -226,7 +236,9 @@ export function ChoiceInputGroupRoot(props: ChoiceInputGroupRootProps) {
   const requiredMessageId = () =>
     local.required ? `${groupId()}-requiredMessage` : undefined
   const descriptionIds = () => {
-    const ids = [validationId(), captionId(), requiredMessageId()].filter(Boolean)
+    const ids = [validationId(), captionId(), requiredMessageId()].filter(
+      Boolean,
+    )
     return ids.length > 0 ? ids.join(' ') : undefined
   }
 
@@ -280,7 +292,8 @@ export function ChoiceInputGroupRoot(props: ChoiceInputGroupRootProps) {
           <legend
             class={styles.GroupLegend}
             data-legend-visible={
-              !((slots().label!.props as ChoiceInputGroupLabelProps).visuallyHidden)
+              !(slots().label!.props as ChoiceInputGroupLabelProps)
+                .visuallyHidden
                 ? true
                 : undefined
             }
@@ -292,15 +305,23 @@ export function ChoiceInputGroupRoot(props: ChoiceInputGroupRootProps) {
             <Show when={slots().caption}>
               {renderCaption(slots().caption!, captionId())}
             </Show>
-            <Show when={slots().validation && slots().validation!.props.children}>
-              <VisuallyHidden>{slots().validation!.props.children}</VisuallyHidden>
+            <Show
+              when={slots().validation && slots().validation!.props.children}
+            >
+              <VisuallyHidden>
+                {slots().validation!.props.children}
+              </VisuallyHidden>
             </Show>
           </legend>
           <div class={styles.Body}>{slots().items}</div>
         </fieldset>
       </Show>
       <Show when={slots().validation}>
-        {renderValidation(slots().validation!, validationId(), Boolean(slots().label))}
+        {renderValidation(
+          slots().validation!,
+          validationId(),
+          Boolean(slots().label),
+        )}
       </Show>
     </div>
   )

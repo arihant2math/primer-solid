@@ -10,7 +10,7 @@ import {
 } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { mergeClassNames, mergeStyles } from '../../utils'
-import { Octicon } from '../Octicon'
+import { AlertFillIcon } from '../Octicon'
 import { Text } from '../Text'
 import { VisuallyHidden } from '../VisuallyHidden'
 import { CharacterCounter } from './character-counter'
@@ -608,7 +608,7 @@ function TextInputImpl(props: TextInputProps) {
           data-component="TextInput.CharacterCounter"
         >
           <Show when={isOverLimit()}>
-            <Octicon name="alert-fill" size={16} />
+            <AlertFillIcon size={16} />
           </Show>
           {characterCount()}
         </Text>

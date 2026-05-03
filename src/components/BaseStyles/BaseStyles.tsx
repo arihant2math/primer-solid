@@ -12,6 +12,8 @@ export function BaseStyles(props: BaseStylesProps) {
 
   return (
     <div
+      data-component="BaseStyles"
+      data-portal-root
       {...rest}
       class={mergeClassNames(styles.BaseStyles, local.class)}
       style={mergeStyles(local.style)}

@@ -16,7 +16,7 @@ import { assignRef, callEventHandler, type RefProp } from '../../utils/solid'
 import { ButtonBase } from '../Button'
 import { Heading as PrimerHeading } from '../Heading'
 import { Link } from '../Link'
-import { Octicon } from '../Octicon'
+import { AlertIcon, CheckIcon } from '../Octicon'
 import { Spinner } from '../Spinner'
 import { VisuallyHidden } from '../VisuallyHidden'
 import groupStyles from './Group.module.css'
@@ -400,7 +400,7 @@ function renderSelection(
           </Show>
         }
       >
-        <Octicon name="check" class={styles.SingleSelectCheckmark} />
+        <CheckIcon class={styles.SingleSelectCheckmark} />
       </Show>
     </span>
   )
@@ -1166,7 +1166,7 @@ export function Item(props: ActionListItemProps) {
                   : styles.TrailingVisual,
               )}
             >
-              <Octicon name="alert" />
+              <AlertIcon />
             </span>
           </button>
         </span>

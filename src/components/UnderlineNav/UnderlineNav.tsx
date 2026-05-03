@@ -13,13 +13,17 @@ import {
   type ValidComponent,
 } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
-import { useOnEscapePress, useOnOutsideClick, useResizeObserver } from '../../hooks'
+import {
+  useOnEscapePress,
+  useOnOutsideClick,
+  useResizeObserver,
+} from '../../hooks'
 import { mergeClassNames } from '../../utils'
 import { assignRef, callEventHandler, type RefProp } from '../../utils/solid'
 import { ActionList } from '../ActionList'
 import { Button } from '../Button'
 import { CounterLabel } from '../CounterLabel'
-import { Octicon } from '../Octicon'
+import { TriangleDownIcon } from '../Octicon'
 import visuallyHiddenStyles from '../VisuallyHidden/VisuallyHidden.module.css'
 import styles from './UnderlineNav.module.css'
 
@@ -105,9 +109,7 @@ function isDevelopment() {
 }
 
 function isCurrent(
-  value:
-    | UnderlineNavItemProps<ValidComponent>['aria-current']
-    | undefined,
+  value: UnderlineNavItemProps<ValidComponent>['aria-current'] | undefined,
 ) {
   return value !== undefined && value !== false && value !== 'false'
 }
@@ -281,20 +283,20 @@ function RenderedUnderlineNavItem(props: {
     props.itemProps as UnderlineNavItemProps<ValidComponent> &
       Record<string, unknown>,
     [
-    'aria-current',
-    'as',
-    'children',
-    'class',
-    'className',
-    'counter',
-    'href',
-    'icon',
-    'leadingVisual',
-    'onClick',
-    'onKeyDown',
-    'onSelect',
-    'ref',
-    'tabIndex',
+      'aria-current',
+      'as',
+      'children',
+      'class',
+      'className',
+      'counter',
+      'href',
+      'icon',
+      'leadingVisual',
+      'onClick',
+      'onKeyDown',
+      'onSelect',
+      'ref',
+      'tabIndex',
     ],
   )
   const Component = Dynamic as unknown as (
@@ -316,7 +318,11 @@ function RenderedUnderlineNavItem(props: {
     event,
   ) => {
     callEventHandler(local.onKeyDown, event)
-    if (event.defaultPrevented || props.interactive === false || !local.onSelect)
+    if (
+      event.defaultPrevented ||
+      props.interactive === false ||
+      !local.onSelect
+    )
       return
     if (event.key !== ' ' && event.key !== 'Enter') return
     if (event.key === ' ') event.preventDefault()
@@ -346,10 +352,7 @@ function RenderedUnderlineNavItem(props: {
           <span data-component="icon">{resolvedVisual()}</span>
         </Show>
         <Show when={local.children !== undefined && local.children !== null}>
-          <span
-            data-component="text"
-            data-content={textContent() || undefined}
-          >
+          <span data-component="text" data-content={textContent() || undefined}>
             {local.children}
           </span>
         </Show>
@@ -376,7 +379,9 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
   >([])
   const [navWidth, setNavWidth] = createSignal(0)
   const [isWidgetOpen, setIsWidgetOpen] = createSignal(false)
-  const [itemWidths, setItemWidths] = createSignal<Record<string, ItemWidth>>({})
+  const [itemWidths, setItemWidths] = createSignal<Record<string, ItemWidth>>(
+    {},
+  )
   const [local, rest] = splitProps(props, [
     'aria-label',
     'as',
@@ -550,7 +555,7 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
                 if (event.defaultPrevented || event.button !== 0) return
                 setIsWidgetOpen((open) => !open)
               }}
-              trailingAction={<Octicon name="triangle-down" />}
+              trailingAction={<TriangleDownIcon />}
               variant="invisible"
             >
               <Show
@@ -605,7 +610,7 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
                       )}
                       href={
                         (itemLocal.as ?? 'a') === 'a'
-                          ? (itemLocal.href as string | undefined) ?? '#'
+                          ? ((itemLocal.href as string | undefined) ?? '#')
                           : (itemLocal.href as string | undefined)
                       }
                       aria-current={itemLocal['aria-current']}
