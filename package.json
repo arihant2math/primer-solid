@@ -24,6 +24,7 @@
     "format": "prettier --write 'src/**/*.{css,ts,tsx}' '*.{md,json,ts}'",
     "format:diff": "prettier --list-different 'src/**/*.{css,ts,tsx}' '*.{md,json,ts}'",
     "lint": "tsc --noEmit",
+    "prepare": "vite build",
     "test": "vitest",
     "type-check": "tsc --noEmit"
   },
