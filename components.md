@@ -50,7 +50,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] KeybindingHint (Text) (not implemented)
 - [ ] Label (none) (not implemented)
 - [ ] LabelGroup (@primer/behaviors/utils, @primer/octicons-react, AnchoredOverlay, Button, VisuallyHidden) (not implemented)
-- [ ] Link (hooks) (partially implemented in `src/components/Link`; missing polymorphic `as`, `inline`, deprecated `hoverColor`, ref and accessibility validation parity)
+- [x] Link (hooks)
 - [ ] LinkButton (ButtonBase) (not implemented)
 - [ ] NavList (@primer/octicons-react, ActionList, useId) (not implemented)
 - [ ] Octicon (@primer/octicons-react) (not implemented)
