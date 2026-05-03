@@ -40,7 +40,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] FilteredSearch (deprecated) (none) (not implemented)
 - [ ] Flash (none) (not implemented)
 - [ ] FormControl (Autocomplete, Checkbox, Radio, Select, SelectPanel, TextInput, TextInputWithTokens, Textarea, useId, useSlots) (not implemented)
-- [ ] Header (none) (not implemented)
+- [x] Header (none)
 - [ ] Heading (hooks) (partially implemented in `src/components/Heading`; API uses `size` instead of React `variant`, missing ref/dev semantic validation/data-variant parity)
 - [ ] Hidden (useResponsiveValue) (not implemented)
 - [ ] IconButton (ButtonBase, Tooltip) (not implemented)

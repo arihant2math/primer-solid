@@ -36,6 +36,7 @@
   --base-text-weight-semibold: 600;
   --text-title-size-large: 2rem;
   --text-title-lineHeight-large: 1.25;
+  --text-title-weight-large: var(--base-text-weight-semibold);
   --text-title-size-medium: 1.5rem;
   --text-title-lineHeight-medium: 1.3333;
   --text-title-size-small: 1.25rem;
@@ -72,6 +73,9 @@
   --borderColor-muted: #d8dee4;
   --focus-outlineColor: #0969da;
   --shadow-resting-small: 0 1px 0 rgba(31, 35, 40, 0.04);
+  --header-fgColor-default: rgba(255, 255, 255, 0.7);
+  --header-fgColor-logo: #ffffff;
+  --header-bgColor: #24292f;
 }
 
 [data-color-mode='night'],
@@ -101,6 +105,9 @@
   --borderColor-muted: #3d444d;
   --focus-outlineColor: #1f6feb;
   --shadow-resting-small: 0 0 transparent;
+  --header-fgColor-default: rgba(255, 255, 255, 0.7);
+  --header-fgColor-logo: #f0f6fc;
+  --header-bgColor: #161b22;
 }
 
 * {
