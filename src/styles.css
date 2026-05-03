@@ -25,6 +25,7 @@
 
   --borderWidth-thin: 1px;
   --borderWidth-thick: 2px;
+  --borderWidth-thicker: 4px;
 
   --control-xsmall-gap: 0.25rem;
 
@@ -76,6 +77,8 @@
   --bgColor-attention-emphasis: #9a6700;
   --bgColor-severe-emphasis: #bc4c00;
   --bgColor-done-emphasis: #8250df;
+  --bgColor-open-emphasis: #1f883d;
+  --bgColor-closed-emphasis: #cf222e;
   --bgColor-sponsor-emphasis: #bf3989;
   --bgColor-sponsors-emphasis: #bf3989;
   --progressBar-track-bgColor: var(--bgColor-neutral-muted);
@@ -99,6 +102,7 @@
   --control-bgColor-disabled: rgba(175, 184, 193, 0.2);
   --skeletonLoader-bgColor: #d8dee4;
   --focus-outlineColor: #0969da;
+  --timelineBadge-bgColor: #eaeef2;
   --shadow-resting-small: 0 1px 0 rgba(31, 35, 40, 0.04);
   --shadow-inset: inset 0 1px 0 rgba(208, 215, 222, 0.2);
   --header-fgColor-default: rgba(255, 255, 255, 0.7);
@@ -127,6 +131,8 @@
   --bgColor-attention-emphasis: #9e6a03;
   --bgColor-severe-emphasis: #bd561d;
   --bgColor-done-emphasis: #8957e5;
+  --bgColor-open-emphasis: #238636;
+  --bgColor-closed-emphasis: #da3633;
   --bgColor-sponsor-emphasis: #bf4b8a;
   --bgColor-sponsors-emphasis: #bf4b8a;
   --progressBar-track-bgColor: var(--bgColor-neutral-muted);
@@ -150,6 +156,7 @@
   --control-bgColor-disabled: rgba(110, 118, 129, 0);
   --skeletonLoader-bgColor: #3d444d;
   --focus-outlineColor: #1f6feb;
+  --timelineBadge-bgColor: #21262d;
   --shadow-resting-small: 0 0 transparent;
   --shadow-inset: 0 0 transparent;
   --header-fgColor-default: rgba(255, 255, 255, 0.7);
