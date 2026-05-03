@@ -84,7 +84,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] Tabs (experimental) (hooks, useControllableState) (not implemented)
 - [x] Text (none)
 - [ ] Textarea (@primer/octicons-react, Text, VisuallyHidden) (not implemented)
-- [ ] TextInput (@primer/octicons-react, Text, VisuallyHidden, hooks, react-is) (not implemented)
+- [ ] TextInput (@primer/octicons-react, Text, VisuallyHidden, hooks, react-is) (partially implemented in `src/components/TextInput`; includes wrapper/layout states, visuals, loading, character counter, and `TextInput.Action`, but still needs full upstream dependency/behavior parity)
 - [ ] TextInputWithTokens (@primer/behaviors, @primer/behaviors/utils, Text, TextInput, Token, VisuallyHidden, useFocusZone, useId, useRefObjectAsForwardedRef) (not implemented)
 - [ ] ThemeProvider (hooks, useSyncedState) (partially implemented in `src/components/ThemeProvider`; missing day/night schemes, auto/system mode, SSR handoff, deep theme merge, setters, `useColorSchemeVar` parity)
 - [ ] Timeline (none) (not implemented)

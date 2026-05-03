@@ -23,6 +23,9 @@
   --base-easing-linear: linear;
 
   --borderWidth-thin: 1px;
+  --borderWidth-thick: 2px;
+
+  --control-xsmall-gap: 0.25rem;
 
   --borderRadius-small: 0.1875rem;
   --borderRadius-medium: 0.375rem;
@@ -79,9 +82,15 @@
   --counter-borderColor: transparent;
   --borderColor-default: #d1d9e0;
   --borderColor-muted: #d8dee4;
+  --borderColor-accent-emphasis: #0969da;
+  --control-borderColor-rest: #d1d9e0;
+  --control-borderColor-disabled: #d1d9e0;
+  --control-borderColor-danger: #d1242f;
+  --control-bgColor-disabled: rgba(175, 184, 193, 0.2);
   --skeletonLoader-bgColor: #d8dee4;
   --focus-outlineColor: #0969da;
   --shadow-resting-small: 0 1px 0 rgba(31, 35, 40, 0.04);
+  --shadow-inset: inset 0 1px 0 rgba(208, 215, 222, 0.2);
   --header-fgColor-default: rgba(255, 255, 255, 0.7);
   --header-fgColor-logo: #ffffff;
   --header-bgColor: #24292f;
@@ -115,9 +124,15 @@
   --counter-borderColor: transparent;
   --borderColor-default: #3d444d;
   --borderColor-muted: #3d444d;
+  --borderColor-accent-emphasis: #1f6feb;
+  --control-borderColor-rest: #3d444d;
+  --control-borderColor-disabled: #3d444d;
+  --control-borderColor-danger: #ff8182;
+  --control-bgColor-disabled: rgba(110, 118, 129, 0);
   --skeletonLoader-bgColor: #3d444d;
   --focus-outlineColor: #1f6feb;
   --shadow-resting-small: 0 0 transparent;
+  --shadow-inset: 0 0 transparent;
   --header-fgColor-default: rgba(255, 255, 255, 0.7);
   --header-fgColor-logo: #f0f6fc;
   --header-bgColor: #161b22;
