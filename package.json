@@ -51,7 +51,8 @@
     "npm": ">=10"
   },
   "dependencies": {
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "color2k": "^2.0.3"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
