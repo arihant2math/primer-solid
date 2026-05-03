@@ -7,3 +7,4 @@ The upstream Primer React repository is cloned in `react/` in this workspace and
 `components.md` contains the current status of the port from react.
 
 I often commit changes while you work, so if changes are missing that is likely the source of the problem.
+Ignore the fact that the react/ subfolder is not tracked.
