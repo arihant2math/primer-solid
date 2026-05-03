@@ -20,6 +20,7 @@
   --base-size-48: 3rem;
 
   --base-duration-1000: 1000ms;
+  --base-easing-linear: linear;
 
   --borderWidth-thin: 1px;
 
