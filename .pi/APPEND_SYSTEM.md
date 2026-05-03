@@ -5,3 +5,5 @@ We aim for a 1-1 port with complete feature parity.
 The upstream Primer React repository is cloned in `react/` in this workspace and should be used as the source of truth for component behavior and dependencies.
 
 `components.md` contains the current status of the port from react.
+
+I often commit changes while you work, so if changes are missing that is likely the source of the problem.
