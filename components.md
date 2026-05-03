@@ -19,7 +19,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] Banner (@primer/octicons-react, Button, VisuallyHidden, useId, useMergedRefs) (not implemented)
 - [ ] BaseStyles (focus-visible) (partially implemented in `src/components/BaseStyles`; missing `as`, `color` CSS variable, portal/data attrs, focus-visible import parity)
 - [ ] Blankslate (Button, Link) (not implemented)
-- [ ] BranchName (none) (not implemented)
+- [x] BranchName (none)
 - [ ] Breadcrumb (partially implemented in `src/components/Breadcrumbs`; includes deprecated alias for `Breadcrumbs`)
 - [ ] Breadcrumbs (partially implemented in `src/components/Breadcrumbs`; includes `Item`, wrap/menu/menu-with-root overflow, variant attrs, polymorphic items, and basic overflow interactions; still missing upstream ActionList/IconButton parity and width-based overflow measurement fidelity)
 - [x] Button (ButtonBase)

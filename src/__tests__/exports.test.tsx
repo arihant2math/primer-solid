@@ -1,5 +1,12 @@
 import { render, screen } from '@solidjs/testing-library'
-import { BaseStyles, Button, Card, Label, ThemeProvider } from '../index'
+import {
+  BaseStyles,
+  BranchName,
+  Button,
+  Card,
+  Label,
+  ThemeProvider,
+} from '../index'
 
 describe('@primer/solid', () => {
   it('renders a themed Primer Solid button', () => {
@@ -30,5 +37,14 @@ describe('@primer/solid', () => {
     render(() => <Label>Beta</Label>)
 
     expect(screen.getByText('Beta')).toBeInTheDocument()
+  })
+
+  it('exports BranchName', () => {
+    render(() => <BranchName href="/tree/main">main</BranchName>)
+
+    expect(screen.getByRole('link', { name: 'main' })).toHaveAttribute(
+      'href',
+      '/tree/main',
+    )
   })
 })

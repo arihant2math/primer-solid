@@ -6,6 +6,7 @@
   --primer-solid-mono-font-stack:
     ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, 'Liberation Mono',
     monospace;
+  --fontStack-monospace: var(--primer-solid-mono-font-stack);
 
   --base-size-2: 0.125rem;
   --base-size-4: 0.25rem;
@@ -59,6 +60,7 @@
   --fgColor-default: #1f2328;
   --fgColor-muted: #59636e;
   --fgColor-accent: #0969da;
+  --fgColor-link: var(--fgColor-accent);
   --fgColor-onEmphasis: #ffffff;
   --fgColor-danger: #d1242f;
   --fgColor-success: #1a7f37;
@@ -68,6 +70,7 @@
   --bgColor-emphasis: #25292e;
   --bgColor-neutral-emphasis: #6e7781;
   --bgColor-accent-emphasis: #0969da;
+  --bgColor-accent-muted: #ddf4ff;
   --bgColor-success-emphasis: #1f883d;
   --bgColor-danger-emphasis: #cf222e;
   --bgColor-attention-emphasis: #9a6700;
@@ -108,6 +111,7 @@
   --fgColor-default: #f0f6fc;
   --fgColor-muted: #9198a1;
   --fgColor-accent: #4493f8;
+  --fgColor-link: var(--fgColor-accent);
   --fgColor-onEmphasis: #ffffff;
   --fgColor-danger: #ff8182;
   --fgColor-success: #3fb950;
@@ -117,6 +121,7 @@
   --bgColor-emphasis: #f0f6fc;
   --bgColor-neutral-emphasis: #6e7681;
   --bgColor-accent-emphasis: #1f6feb;
+  --bgColor-accent-muted: rgba(56, 139, 253, 0.1);
   --bgColor-success-emphasis: #238636;
   --bgColor-danger-emphasis: #da3633;
   --bgColor-attention-emphasis: #9e6a03;
