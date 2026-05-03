@@ -48,7 +48,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [x] IssueLabel (color2k)
 - [x] IssueLabelToken (Token, color2k)
 - [ ] KeybindingHint (Text) (not implemented)
-- [ ] Label (none) (not implemented)
+- [x] Label (none)
 - [ ] LabelGroup (@primer/behaviors/utils, @primer/octicons-react, AnchoredOverlay, Button, VisuallyHidden) (not implemented)
 - [x] Link (hooks)
 - [ ] LinkButton (ButtonBase) (not implemented)

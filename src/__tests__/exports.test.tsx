@@ -1,5 +1,5 @@
 import { render, screen } from '@solidjs/testing-library'
-import { BaseStyles, Button, Card, ThemeProvider } from '../index'
+import { BaseStyles, Button, Card, Label, ThemeProvider } from '../index'
 
 describe('@primer/solid', () => {
   it('renders a themed Primer Solid button', () => {
@@ -24,5 +24,11 @@ describe('@primer/solid', () => {
     ))
 
     expect(screen.getByText('Exported card')).toBeInTheDocument()
+  })
+
+  it('exports Label', () => {
+    render(() => <Label>Beta</Label>)
+
+    expect(screen.getByText('Beta')).toBeInTheDocument()
   })
 })
