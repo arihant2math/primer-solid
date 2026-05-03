@@ -5,7 +5,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 ## Components
 
 - [ ] ActionBar (@primer/octicons-react, ActionList, ActionMenu, Button, hooks, useFocusZone) (not implemented)
-- [ ] ActionList (Heading) (not implemented)
+- [x] ActionList (implemented in `src/components/ActionList`; includes `Item`, `LinkItem`, `Group`, `GroupHeading`, `Heading`, `Divider`, `Description`, `LeadingVisual`, `TrailingVisual`, and `TrailingAction`)
 - [ ] ActionList (deprecated) (@primer/octicons-react, Truncate, react-is, useId) (not implemented)
 - [ ] ActionMenu (@primer/behaviors, @primer/octicons-react, ActionList, AnchoredOverlay, Button, Dialog, Overlay, Tooltip) (not implemented)
 - [ ] ActionMenu (deprecated) (ActionList deprecated, AnchoredOverlay, Button, Overlay, hooks) (not implemented)

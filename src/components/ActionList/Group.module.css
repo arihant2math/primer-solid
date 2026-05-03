@@ -1,0 +1,36 @@
+.Group {
+  list-style: none;
+}
+
+.Group:not(:first-child) {
+  margin-block-start: var(--base-size-8, 8px);
+}
+
+.GroupList {
+  padding-inline-start: 0;
+}
+
+.GroupHeadingWrap {
+  display: flex;
+  flex-direction: column;
+  padding-inline: var(--base-size-16, 16px);
+  padding-block: var(--base-size-6, 6px);
+  font-size: var(--text-body-size-small, 12px);
+  font-weight: var(--base-text-weight-semibold, 600);
+  line-height: 18px;
+  color: var(--fgColor-muted);
+}
+
+.GroupHeadingWrap[data-variant='filled'] {
+  margin-block: var(--base-size-8, 8px);
+  background: var(--bgColor-muted);
+  border-top: 1px solid var(--borderColor-muted);
+  border-bottom: 1px solid var(--borderColor-muted);
+}
+
+.GroupHeading {
+  margin: 0;
+  font-size: var(--text-body-size-small, 12px);
+  font-weight: var(--base-text-weight-semibold, 600);
+  color: var(--fgColor-muted);
+}

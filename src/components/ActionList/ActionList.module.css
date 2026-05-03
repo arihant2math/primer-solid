@@ -1,0 +1,350 @@
+.ActionList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ActionList ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ActionList[data-variant='inset'] {
+  padding-block: var(--base-size-8, 8px);
+}
+
+.ActionList[data-variant='horizontal-inset'] {
+  padding-bottom: var(--base-size-8, 8px);
+}
+
+.ActionList[data-variant='inset'] .ActionListItem,
+.ActionList[data-variant='horizontal-inset'] .ActionListItem {
+  margin-inline: var(--base-size-8, 8px);
+}
+
+.ActionList[data-dividers='true']
+  .ActionListItem
+  + .ActionListItem
+  .ActionListSubContent::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--borderColor-muted);
+}
+
+.ActionList[data-dividers='true']
+  .ActionListItem:first-of-type
+  .ActionListSubContent::before,
+.ActionList[data-dividers='true']
+  .Divider
+  + .ActionListItem
+  .ActionListSubContent::before {
+  content: none;
+}
+
+.ActionList > .Divider:first-child {
+  display: none;
+}
+
+.ActionListItem {
+  position: relative;
+  display: block;
+  list-style: none;
+  background-color: var(--control-transparent-bgColor-rest, transparent);
+  border-radius: var(--borderRadius-medium, 6px);
+}
+
+.ActionListItem[data-has-trailing-action='true'] {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.ActionListItem:not([data-inactive='true']):not(
+    [data-is-disabled='true']
+  ):hover {
+  background-color: var(
+    --control-transparent-bgColor-hover,
+    var(--bgColor-muted)
+  );
+}
+
+.ActionListItem:not([data-inactive='true']):not(
+    [data-is-disabled='true']
+  ):active {
+  background-color: var(
+    --control-transparent-bgColor-active,
+    var(--bgColor-muted)
+  );
+}
+
+.ActionListItem[data-active='true'] {
+  background: var(--control-transparent-bgColor-selected, var(--bgColor-muted));
+}
+
+.ActionListItem[data-is-disabled='true'] .ActionListContent,
+.ActionListItem[aria-disabled='true'] .ActionListContent,
+.ActionListItem[data-is-disabled='true'] .ItemLabel,
+.ActionListItem[aria-disabled='true'] .ItemLabel,
+.ActionListItem[data-is-disabled='true'] .Description,
+.ActionListItem[aria-disabled='true'] .Description,
+.ActionListItem[data-is-disabled='true'] .VisualWrap,
+.ActionListItem[aria-disabled='true'] .VisualWrap {
+  color: var(--control-fgColor-disabled, var(--fgColor-muted));
+}
+
+.ActionListItem[data-inactive='true'] .ActionListContent,
+.ActionListItem[data-inactive='true'] .ItemLabel,
+.ActionListItem[data-inactive='true'] .Description,
+.ActionListItem[data-inactive='true'] .VisualWrap {
+  color: var(--fgColor-muted);
+}
+
+.ActionListItem[data-variant='danger'] .ItemLabel,
+.ActionListItem[data-variant='danger'] .LeadingVisual,
+.ActionListItem[data-variant='danger'] .LeadingAction {
+  color: var(--control-danger-fgColor-rest, var(--fgColor-danger));
+}
+
+.ActionListItem:focus-visible,
+.ActionListContent:focus-visible,
+.InactiveButtonReset:focus-visible,
+.TrailingActionButton:focus-visible {
+  outline: 2px solid var(--focus-outlineColor, #0969da);
+  outline-offset: 2px;
+}
+
+.ActionListContent {
+  position: relative;
+  display: grid;
+  width: 100%;
+  padding-block: var(--control-medium-paddingBlock, 6px);
+  padding-inline: var(--control-medium-paddingInline-condensed, 8px);
+  color: var(--control-fgColor-rest, var(--fgColor-default));
+  text-align: left;
+  user-select: none;
+  background: transparent;
+  border: 0;
+  border-radius: var(--borderRadius-medium, 6px);
+  grid-template-areas: 'spacer leadingAction leadingVisual content';
+  grid-template-columns: min-content min-content min-content minmax(0, auto);
+  align-items: start;
+  text-decoration: none;
+  appearance: none;
+}
+
+.ActionListContent[data-size='large'] {
+  padding-block: var(--control-large-paddingBlock, 10px);
+}
+
+.ActionListContent > :not(:last-child, .Spacer) {
+  margin-right: var(--control-medium-gap, 8px);
+}
+
+.ActionListSubContent {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-area: content;
+  grid-template-areas: 'label trailingVisual trailingAction';
+  grid-template-columns: minmax(0, auto) min-content min-content;
+  align-items: start;
+}
+
+.ActionListSubContent > :not(:last-child) {
+  margin-right: var(--control-medium-gap, 8px);
+}
+
+.Spacer {
+  display: block;
+  width: 0;
+  grid-area: spacer;
+}
+
+.LeadingAction {
+  grid-area: leadingAction;
+}
+
+.LeadingVisual {
+  grid-area: leadingVisual;
+}
+
+.TrailingVisual {
+  grid-area: trailingVisual;
+  font-size: var(--text-body-size-medium, 14px);
+}
+
+.TrailingAction {
+  grid-area: trailingAction;
+}
+
+.ItemDescriptionWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-4, 4px);
+  grid-area: label;
+}
+
+.ItemDescriptionWrap[data-description-variant='inline'] {
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--base-size-8, 8px);
+}
+
+.ItemDescriptionWrap[data-description-variant='inline'] .ItemLabel {
+  min-width: 0;
+  flex: 1 0 auto;
+}
+
+.Description {
+  font-size: var(--text-body-size-small, 12px);
+  font-weight: var(--base-text-weight-normal, 400);
+  line-height: 16px;
+  color: var(--fgColor-muted);
+}
+
+.TruncatedDescription {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.VisualWrap {
+  display: flex;
+  min-width: max-content;
+  min-height: var(--base-size-20, 20px);
+  line-height: 20px;
+  color: var(--fgColor-muted);
+  align-items: center;
+  justify-content: center;
+  fill: currentColor;
+}
+
+.ItemLabel {
+  position: relative;
+  min-width: 0;
+  font-size: var(--text-body-size-medium, 14px);
+  font-weight: var(--base-text-weight-normal, 400);
+  line-height: 20px;
+  color: var(--fgColor-default);
+  grid-area: label;
+  word-break: break-word;
+}
+
+.ItemDescriptionWrap .ItemLabel {
+  font-weight: var(--base-text-weight-semibold, 600);
+}
+
+.SingleSelectCheckmark {
+  width: 16px;
+  height: 16px;
+}
+
+.LeadingAction[data-selection-variant='single'][data-selected='false']
+  .SingleSelectCheckmark {
+  visibility: hidden;
+}
+
+.MultiSelectCheckbox {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: var(--bgColor-default);
+  border: 1px solid
+    var(--control-borderColor-emphasis, var(--borderColor-default));
+  border-radius: var(--borderRadius-small, 4px);
+}
+
+.MultiSelectCheckbox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-color: var(--control-checked-fgColor-rest, #fff);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9'%3E%3Cpath fill='black' d='M11.78.22a.75.75 0 0 1 0 1.06L4.52 8.54a.75.75 0 0 1-1.06 0L.2 5.29a.75.75 0 1 1 1.06-1.06l2.73 2.72L10.72.22a.75.75 0 0 1 1.06 0Z'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 75%;
+}
+
+.LeadingAction[data-selection-variant='multiple'][data-selected='true']
+  .MultiSelectCheckbox {
+  background-color: var(--control-checked-bgColor-rest, #0969da);
+  border-color: var(--control-checked-borderColor-rest, #0969da);
+}
+
+.LeadingAction[data-selection-variant='multiple'][data-selected='true']
+  .MultiSelectCheckbox::before {
+  opacity: 1;
+}
+
+.RadioSelection {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid
+    var(--control-borderColor-emphasis, var(--borderColor-default));
+  border-radius: 999px;
+  background: var(--bgColor-default);
+}
+
+.RadioSelectionDot {
+  position: absolute;
+  inset: 4px;
+  border-radius: 999px;
+  background: var(--control-checked-fgColor-rest, #fff);
+  opacity: 0;
+}
+
+.LeadingAction[data-selection-variant='radio'][data-selected='true']
+  .RadioSelection {
+  background: var(--control-checked-bgColor-rest, #0969da);
+  border-color: var(--control-checked-borderColor-rest, #0969da);
+}
+
+.LeadingAction[data-selection-variant='radio'][data-selected='true']
+  .RadioSelectionDot {
+  opacity: 1;
+}
+
+.TrailingActionButton {
+  height: 100%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.InactiveButtonWrap {
+  display: flex;
+}
+
+.InactiveButtonReset {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+.InactiveWarning {
+  grid-row: 2;
+  font-size: var(--text-body-size-small, 12px);
+  line-height: 16px;
+  color: var(--fgColor-attention, #9a6700);
+}
+
+.Divider {
+  display: block;
+  height: 1px;
+  margin-block: var(--base-size-8, 8px);
+  list-style: none;
+  background: var(--borderColor-muted);
+  border: 0;
+}
