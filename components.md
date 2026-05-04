@@ -42,7 +42,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] FormControl (Autocomplete, Checkbox, Radio, Select, SelectPanel, TextInput, TextInputWithTokens, Textarea, useId, useSlots) (not implemented)
 - [x] Header (none)
 - [ ] Heading (hooks) (partially implemented in `src/components/Heading`; API uses `size` instead of React `variant`, missing ref/dev semantic validation/data-variant parity)
-- [ ] Hidden (useResponsiveValue) (not implemented)
+- [x] Hidden (implemented in `src/components/Hidden`; includes upstream `when` normalization, responsive CSS variable display semantics, default `div` rendering, and React-compatible `className` support)
 - [ ] IconButton (ButtonBase, Tooltip) (partially implemented in `src/components/Button`; includes ButtonBase-backed icon-only button rendering, aria label/description semantics, keyshortcut support, loading/variant/size states, and basic built-in tooltip behavior; still missing full upstream Tooltip integration parity)
 - [ ] InlineMessage (@primer/octicons-react, react-is) (not implemented)
 - [x] IssueLabel (color2k)
