@@ -2,6 +2,7 @@ import './styles.css'
 
 export * from './components/ActionList'
 export * from './components/Avatar'
+export * from './components/AvatarStack'
 export * from './components/BaseStyles'
 export * from './components/BranchName'
 export * from './components/Box'

@@ -1,5 +1,7 @@
 import { render, screen } from '@solidjs/testing-library'
 import {
+  Avatar,
+  AvatarStack,
   BaseStyles,
   BranchName,
   Button,
@@ -25,6 +27,25 @@ describe('@primer/solid', () => {
     expect(
       screen.getByRole('button', { name: 'Save changes' }),
     ).toHaveAttribute('data-variant', 'primary')
+  })
+
+  it('exports Avatar', () => {
+    const { container } = render(() => <Avatar src="primer.png" alt="Primer" />)
+
+    expect(container.querySelector('[data-component="Avatar"]')).toBeInTheDocument()
+  })
+
+  it('exports AvatarStack', () => {
+    const { container } = render(() => (
+      <AvatarStack>
+        <Avatar src="primer-1.png" alt="Primer 1" />
+        <Avatar src="primer-2.png" alt="Primer 2" />
+      </AvatarStack>
+    ))
+
+    expect(
+      container.querySelector('[data-component="AvatarStack"]'),
+    ).toBeInTheDocument()
   })
 
   it('exports Card', () => {

@@ -45,6 +45,7 @@ npm test
 - `Link`
 - `Stack`
 - `Avatar`
+- `AvatarStack`
 - `VisuallyHidden`
 
 The library is intentionally small at initialization time, with a foundation for porting additional Primer React components into Solid.
