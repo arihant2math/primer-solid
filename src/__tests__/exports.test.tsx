@@ -10,6 +10,7 @@ import {
   Pagination,
   Label,
   MarkGithubIcon,
+  SegmentedControl,
   Octicon,
   Radio,
   RadioGroup,
@@ -36,7 +37,9 @@ describe('@primer/solid', () => {
   it('exports Avatar', () => {
     const { container } = render(() => <Avatar src="primer.png" alt="Primer" />)
 
-    expect(container.querySelector('[data-component="Avatar"]')).toBeInTheDocument()
+    expect(
+      container.querySelector('[data-component="Avatar"]'),
+    ).toBeInTheDocument()
   })
 
   it('exports AvatarStack', () => {
@@ -98,6 +101,19 @@ describe('@primer/solid', () => {
 
     expect(
       container.querySelector('[data-component="Octicon"]'),
+    ).toBeInTheDocument()
+  })
+
+  it('exports SegmentedControl', () => {
+    const { container } = render(() => (
+      <SegmentedControl aria-label="View">
+        <SegmentedControl.Button>Preview</SegmentedControl.Button>
+        <SegmentedControl.Button>Code</SegmentedControl.Button>
+      </SegmentedControl>
+    ))
+
+    expect(
+      container.querySelector('[data-component="SegmentedControl"]'),
     ).toBeInTheDocument()
   })
 

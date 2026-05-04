@@ -1,0 +1,494 @@
+.SegmentedControl {
+  --segmented-control-icon-width: 32px;
+
+  display: inline-flex;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-body-size-medium);
+  list-style: none;
+  background-color: var(--controlTrack-bgColor-rest, var(--bgColor-muted));
+  border: var(--borderWidth-thin) solid
+    var(--controlTrack-borderColor-rest, transparent);
+  border-radius: var(--borderRadius-medium);
+}
+
+.SegmentedControl[data-full-width='true'] {
+  display: flex;
+  width: 100%;
+  --segmented-control-icon-width: 100%;
+}
+
+.SegmentedControl[data-full-width='false'] {
+  display: inline-flex;
+  width: auto;
+  --segmented-control-icon-width: 32px;
+}
+
+@media (--viewportRange-narrow) {
+  .SegmentedControl[data-full-width-narrow='true'] {
+    display: flex;
+    width: 100%;
+    --segmented-control-icon-width: 100%;
+  }
+
+  .SegmentedControl[data-full-width-narrow='false'] {
+    display: inline-flex;
+    width: auto;
+    --segmented-control-icon-width: 32px;
+  }
+}
+
+@media (--viewportRange-regular) {
+  .SegmentedControl[data-full-width-regular='true'] {
+    display: flex;
+    width: 100%;
+    --segmented-control-icon-width: 100%;
+  }
+
+  .SegmentedControl[data-full-width-regular='false'] {
+    display: inline-flex;
+    width: auto;
+    --segmented-control-icon-width: 32px;
+  }
+}
+
+@media (--viewportRange-wide) {
+  .SegmentedControl[data-full-width-wide='true'] {
+    display: flex;
+    width: 100%;
+    --segmented-control-icon-width: 100%;
+  }
+
+  .SegmentedControl[data-full-width-wide='false'] {
+    display: inline-flex;
+    width: auto;
+    --segmented-control-icon-width: 32px;
+  }
+
+  .SegmentedControl[data-full-width-regular='true']:not(
+      [data-full-width-wide='true']
+    ) {
+    display: inline-flex;
+    width: auto;
+    --segmented-control-icon-width: 32px;
+  }
+}
+
+.SegmentedControl[data-variant='dropdown'] {
+  display: none;
+}
+
+.SegmentedControl[data-variant='hideLabels'] .Text {
+  display: none;
+}
+
+@media (--viewportRange-narrow) {
+  .SegmentedControl[data-variant-narrow='dropdown'] {
+    display: none;
+  }
+
+  .SegmentedControl[data-variant-narrow='hideLabels'] .Text {
+    display: none;
+  }
+}
+
+@media (--viewportRange-regular) {
+  .SegmentedControl[data-variant-regular='dropdown'] {
+    display: none;
+  }
+
+  .SegmentedControl[data-variant-regular='hideLabels'] .Text {
+    display: none;
+  }
+}
+
+@media (--viewportRange-wide) {
+  .SegmentedControl[data-variant-wide='dropdown'] {
+    display: none;
+  }
+
+  .SegmentedControl[data-variant-wide='hideLabels'] .Text {
+    display: none;
+  }
+}
+
+.SegmentedControl[data-size='small'] {
+  height: 28px;
+  font-size: var(--text-body-size-small);
+}
+
+.DropdownContainer {
+  display: none;
+}
+
+.DropdownContainer[data-variant='dropdown'] {
+  display: block;
+}
+
+@media (--viewportRange-narrow) {
+  .DropdownContainer[data-variant-narrow='dropdown'] {
+    display: block;
+  }
+}
+
+@media (--viewportRange-regular) {
+  .DropdownContainer[data-variant-regular='dropdown'] {
+    display: block;
+  }
+}
+
+@media (--viewportRange-wide) {
+  .DropdownContainer[data-variant-wide='dropdown'] {
+    display: block;
+  }
+}
+
+.Dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.DropdownButton {
+  font-weight: var(--base-text-weight-normal);
+}
+
+.DropdownButton :global(.octicon) {
+  color: var(--fgColor-muted);
+}
+
+.DropdownMenu {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + var(--base-size-4));
+  right: 0;
+  min-width: 12rem;
+  padding: var(--base-size-8);
+  background: var(--overlay-bgColor, var(--bgColor-default));
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 1px 3px rgba(31, 35, 40, 0.12),
+    0 8px 24px rgba(140, 149, 159, 0.2);
+}
+
+.DropdownMenuList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.DropdownMenuItem + .DropdownMenuItem {
+  margin-top: var(--base-size-4);
+}
+
+.DropdownMenuButton {
+  display: flex;
+  width: 100%;
+  min-height: 32px;
+  padding: var(--base-size-6) var(--base-size-8);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--base-size-12);
+  font: inherit;
+  color: var(--fgColor-default);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: var(--borderRadius-medium);
+}
+
+.DropdownMenuButton:hover:not([aria-disabled='true']) {
+  background: var(--controlTrack-bgColor-hover, var(--bgColor-muted));
+}
+
+.DropdownMenuButton[aria-checked='true'] {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.DropdownMenuButton[aria-disabled='true'] {
+  color: var(--fgColor-disabled, var(--fgColor-muted));
+  cursor: not-allowed;
+}
+
+.DropdownMenuButton:focus-visible {
+  outline: 2px solid var(--focus-outlineColor);
+  outline-offset: 2px;
+}
+
+.DropdownMenuButtonContent {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
+.DropdownMenuItemIcon {
+  display: inline-flex;
+  color: var(--fgColor-muted);
+}
+
+.DropdownMenuItemText {
+  white-space: nowrap;
+}
+
+.DropdownMenuCheck {
+  display: inline-flex;
+  min-width: 16px;
+  align-items: center;
+  justify-content: center;
+  color: var(--fgColor-success);
+}
+
+.Item {
+  position: relative;
+  display: block;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  flex-grow: 1;
+}
+
+.Item:not(:last-child) {
+  margin-right: 1px;
+}
+
+.Item:not(:last-child)::after {
+  position: absolute;
+  top: var(--base-size-8);
+  right: calc(-1 * var(--base-size-2));
+  bottom: var(--base-size-8);
+  width: 1px;
+  content: '';
+  background-color: var(--borderColor-default);
+}
+
+.Item:not(:last-child):has(+ [data-selected])::after,
+.Item:not(:last-child)[data-selected]::after {
+  background-color: transparent;
+}
+
+.Item:focus-within:has(:focus-visible) {
+  background-color: transparent;
+}
+
+.Item:first-child {
+  margin-left: -1px;
+}
+
+.Item:last-child {
+  margin-right: -1px;
+}
+
+.Counter {
+  display: flex;
+  margin-inline-start: var(--base-size-8);
+  align-items: center;
+}
+
+.Button {
+  --segmented-control-button-inner-padding: 12px;
+  --segmented-control-button-bg-inset: 4px;
+  --segmented-control-outer-radius: var(--borderRadius-medium);
+
+  width: 100%;
+  height: 100%;
+  padding: var(--segmented-control-button-bg-inset);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--base-text-weight-normal);
+  color: currentColor;
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  border-width: 0;
+  border-radius: var(--segmented-control-outer-radius);
+}
+
+.Button svg {
+  fill: var(--fgColor-muted);
+  color: var(--fgColor-muted);
+}
+
+.Button:focus:not(:disabled) {
+  outline: var(--base-size-2) solid var(--fgColor-accent);
+  outline-offset: -1px;
+  box-shadow: none;
+}
+
+.Button:focus:not(:disabled):not(:focus-visible) {
+  outline: solid 1px transparent;
+}
+
+.Button:focus-visible:not(:disabled) {
+  outline: var(--base-size-2) solid var(--fgColor-accent);
+  outline-offset: -1px;
+  box-shadow: none;
+}
+
+.Button:focus:focus-visible:not(:last-child)::after {
+  width: 0;
+}
+
+.Button[aria-disabled='true']:not([aria-current='true']) {
+  color: var(--fgColor-disabled, var(--fgColor-muted));
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.Button[aria-disabled='true']:not([aria-current='true']) svg {
+  fill: var(--fgColor-disabled, var(--fgColor-muted));
+  color: var(--fgColor-disabled, var(--fgColor-muted));
+}
+
+@media (pointer: coarse) {
+  .Button::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    min-height: 44px;
+    content: '';
+    transform: translateY(-50%);
+  }
+}
+
+.IconButton {
+  width: var(--segmented-control-icon-width, 32px);
+}
+
+.Content {
+  display: flex;
+  height: 100%;
+  padding-right: calc(
+    var(--segmented-control-button-inner-padding) -
+      var(--segmented-control-button-bg-inset)
+  );
+  padding-left: calc(
+    var(--segmented-control-button-inner-padding) -
+      var(--segmented-control-button-bg-inset)
+  );
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  border-style: solid;
+  border-width: var(--borderWidth-thin);
+  border-radius: calc(
+    var(--segmented-control-outer-radius) -
+      var(--segmented-control-button-bg-inset) / 2
+  );
+}
+
+.Button[aria-current='true'] {
+  padding: 0;
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.Button[aria-current='true'] .Content {
+  padding-right: var(--segmented-control-button-inner-padding);
+  padding-left: var(--segmented-control-button-inner-padding);
+  background-color: var(--controlKnob-bgColor-rest, var(--bgColor-default));
+  border-color: var(--controlKnob-borderColor-rest, var(--borderColor-default));
+  border-radius: var(--segmented-control-outer-radius);
+}
+
+.Button:not([aria-current='true']):not([aria-disabled='true']):hover .Content {
+  background-color: var(--controlTrack-bgColor-hover, rgba(175, 184, 193, 0.2));
+}
+
+.Button:not([aria-current='true']):not([aria-disabled='true']):active .Content {
+  background-color: var(
+    --controlTrack-bgColor-active,
+    rgba(175, 184, 193, 0.3)
+  );
+}
+
+.Text::after {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  font-weight: var(--base-text-weight-semibold);
+  pointer-events: none;
+  visibility: hidden;
+  content: attr(data-text);
+  user-select: none;
+}
+
+.LeadingIcon {
+  margin-right: var(--base-size-4);
+}
+
+.TooltipWrapper {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+}
+
+.Tooltip {
+  position: absolute;
+  z-index: 1000;
+  max-width: min(20rem, calc(100vw - 16px));
+  padding: var(--base-size-6) var(--base-size-8);
+  font-size: var(--text-body-size-small);
+  line-height: var(--text-body-lineHeight-small);
+  color: var(--fgColor-onEmphasis, #ffffff);
+  white-space: nowrap;
+  pointer-events: none;
+  background-color: var(--overlay-bgColor, #24292f);
+  border-radius: var(--borderRadius-medium);
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 120ms ease-out,
+    visibility 120ms ease-out;
+}
+
+.TooltipWrapper:hover .Tooltip,
+.TooltipWrapper:focus-within .Tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.Tooltip[data-direction='n'] {
+  bottom: calc(100% + var(--base-size-8));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Tooltip[data-direction='ne'] {
+  right: 0;
+  bottom: calc(100% + var(--base-size-8));
+}
+
+.Tooltip[data-direction='e'] {
+  top: 50%;
+  left: calc(100% + var(--base-size-8));
+  transform: translateY(-50%);
+}
+
+.Tooltip[data-direction='se'] {
+  top: calc(100% + var(--base-size-8));
+  right: 0;
+}
+
+.Tooltip[data-direction='s'] {
+  top: calc(100% + var(--base-size-8));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Tooltip[data-direction='sw'] {
+  top: calc(100% + var(--base-size-8));
+  left: 0;
+}
+
+.Tooltip[data-direction='w'] {
+  top: 50%;
+  right: calc(100% + var(--base-size-8));
+  transform: translateY(-50%);
+}
+
+.Tooltip[data-direction='nw'] {
+  bottom: calc(100% + var(--base-size-8));
+  left: 0;
+}
