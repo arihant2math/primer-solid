@@ -1,34 +1,86 @@
-export type ColorMode = 'day' | 'night' | 'auto'
-export type ColorScheme = 'light' | 'dark'
+export type ColorMode = 'day' | 'night' | 'light' | 'dark'
+export type ColorModeWithAuto = ColorMode | 'auto'
+export type ColorScheme = string
 
 export type Theme = {
   colorMode: ColorMode
   colorScheme?: ColorScheme
 }
 
+export const defaultColorMode: ColorMode = 'day'
+export const defaultDayScheme = 'light'
+export const defaultNightScheme = 'dark'
+
 export const defaultTheme: Theme = {
-  colorMode: 'day',
-  colorScheme: 'light',
+  colorMode: defaultColorMode,
+  colorScheme: defaultDayScheme,
 }
 
-export function getColorScheme(colorMode: ColorMode): ColorScheme | undefined {
-  if (colorMode === 'day') return 'light'
-  if (colorMode === 'night') return 'dark'
-  return undefined
+const theme = defaultTheme
+
+export function resolveColorMode(
+  colorMode: ColorModeWithAuto,
+  systemColorMode: ColorMode,
+): ColorMode {
+  return colorMode === 'auto' ? systemColorMode : colorMode
 }
 
-export function getThemeAttributes(theme: Theme): {
-  'data-color-mode': ColorMode
-  'data-light-theme': 'light'
-  'data-dark-theme': 'dark'
-  'data-color-scheme': ColorScheme | undefined
+export function chooseColorScheme(
+  colorMode: ColorMode,
+  dayScheme: ColorScheme = defaultDayScheme,
+  nightScheme: ColorScheme = defaultNightScheme,
+): ColorScheme {
+  switch (colorMode) {
+    case 'day':
+    case 'light':
+      return dayScheme
+    case 'dark':
+    case 'night':
+      return nightScheme
+  }
+}
+
+export function getColorScheme(
+  colorMode: ColorMode,
+  dayScheme: ColorScheme = defaultDayScheme,
+  nightScheme: ColorScheme = defaultNightScheme,
+): ColorScheme {
+  return chooseColorScheme(colorMode, dayScheme, nightScheme)
+}
+
+export function getThemeAttributes(theme: {
+  colorMode: ColorModeWithAuto
+  dayScheme?: ColorScheme
+  nightScheme?: ColorScheme
+  systemColorMode?: ColorMode
+  colorScheme?: ColorScheme
+}): {
+  'data-color-mode': 'light' | 'dark' | 'auto'
+  'data-light-theme': ColorScheme
+  'data-dark-theme': ColorScheme
+  'data-color-scheme': ColorScheme
 } {
-  const colorScheme = theme.colorScheme ?? getColorScheme(theme.colorMode)
+  const dayScheme = theme.dayScheme ?? defaultDayScheme
+  const nightScheme = theme.nightScheme ?? defaultNightScheme
+  const resolvedColorMode = resolveColorMode(
+    theme.colorMode,
+    theme.systemColorMode ?? defaultColorMode,
+  )
+  const colorScheme =
+    theme.colorScheme ??
+    chooseColorScheme(resolvedColorMode, dayScheme, nightScheme)
 
   return {
-    'data-color-mode': theme.colorMode,
-    'data-light-theme': 'light',
-    'data-dark-theme': 'dark',
+    'data-color-mode':
+      theme.colorMode === 'auto'
+        ? 'auto'
+        : colorScheme.includes('dark')
+          ? 'dark'
+          : 'light',
+    'data-light-theme': dayScheme,
+    'data-dark-theme': nightScheme,
     'data-color-scheme': colorScheme,
   }
 }
+
+export default theme

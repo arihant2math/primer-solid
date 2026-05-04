@@ -18,6 +18,8 @@ import {
   RelativeTime,
   ThemeProvider,
   octicons,
+  theme,
+  useColorSchemeVar,
 } from '../index'
 
 describe('@primer/solid', () => {
@@ -163,5 +165,25 @@ describe('@primer/solid', () => {
 
   it('exports octicons', () => {
     expect(octicons['mark-github']).toBeDefined()
+  })
+
+  it('exports theme', () => {
+    expect(theme.colorMode).toBe('day')
+    expect(theme.colorScheme).toBe('light')
+  })
+
+  it('exports useColorSchemeVar', () => {
+    function Example() {
+      const value = useColorSchemeVar({ light: 'a', dark: 'b' }, 'fallback')
+      return <span data-value={value}>hook</span>
+    }
+
+    render(() => (
+      <ThemeProvider colorMode="day">
+        <Example />
+      </ThemeProvider>
+    ))
+
+    expect(screen.getByText('hook')).toHaveAttribute('data-value', 'a')
   })
 })

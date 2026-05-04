@@ -1,1 +1,2 @@
-export * from './BaseStyles'
+export { BaseStyles, default } from './BaseStyles'
+export type { BaseStylesProps } from './BaseStyles'
