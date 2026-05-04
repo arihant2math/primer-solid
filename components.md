@@ -98,5 +98,5 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [ ] Truncate (none) (not implemented)
 - [ ] UnderlineNav (@primer/behaviors, @primer/octicons-react, ActionList, Button, CounterLabel, VisuallyHidden, useId, useOnEscapePress, useOnOutsideClick, useResizeObserver) (partially implemented in `src/components/UnderlineNav`; includes `UnderlineNav.Item`, current item styling, counters/loading counters, icons/leadingVisual, hidden heading + nav labelling, `flush`/`inset` variants, custom `as`, and responsive overflow menu with More button; still missing full upstream anchored-position fidelity and broader integration parity)
 - [ ] UnderlineNav (deprecated) (none) (not implemented)
-- [ ] UnderlinePanels (experimental) (@github/tab-container-element, @primer/octicons-react, hooks, useResizeObserver) (not implemented)
+- [ ] UnderlinePanels (experimental) (@github/tab-container-element, @primer/octicons-react, hooks, useResizeObserver) (partially implemented in `src/components/UnderlinePanels`; includes `UnderlinePanels.Tab`/`Panel`, tablist labelling, generated tab/panel ids, controlled/default selection, click selection, counters/loading counters, icons, and narrow-width icon hiding; still missing full upstream custom-element parity and broader interaction/slot compatibility)
 - [x] VisuallyHidden (none)

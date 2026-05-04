@@ -12,7 +12,6 @@ import {
   type JSX,
   type ValidComponent,
 } from 'solid-js'
-import { Dynamic } from 'solid-js/web'
 import {
   useOnEscapePress,
   useOnOutsideClick,
@@ -23,6 +22,14 @@ import { assignRef, callEventHandler, type RefProp } from '../../utils/solid'
 import { ActionList } from '../ActionList'
 import { Button } from '../Button'
 import { CounterLabel } from '../CounterLabel'
+import {
+  GAP,
+  LoadingCounter,
+  UnderlineItem,
+  UnderlineItemList,
+  UnderlineWrapper,
+  type UnderlineItemVisual,
+} from '../_internal/UnderlineTabbedInterface'
 import { TriangleDownIcon } from '../Octicon'
 import visuallyHiddenStyles from '../VisuallyHidden/VisuallyHidden.module.css'
 import styles from './UnderlineNav.module.css'
@@ -31,7 +38,7 @@ type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends unknown
   ? Omit<T, TOmitted>
   : never
 
-type UnderlineNavVisual = JSX.Element | ValidComponent
+type UnderlineNavVisual = UnderlineItemVisual
 
 type UnderlineNavContextValue = {
   upsert: (id: string, props: UnderlineNavItemProps<ValidComponent>) => void
@@ -100,7 +107,6 @@ export type UnderlineNavItemProps<As extends ValidComponent = 'a'> =
 const UnderlineNavContext = createContext<UnderlineNavContextValue>()
 
 export const MORE_BTN_WIDTH = 86
-const GAP = 8
 
 function isDevelopment() {
   const env = (globalThis as { process?: { env?: { NODE_ENV?: string } } })
@@ -112,32 +118,6 @@ function isCurrent(
   value: UnderlineNavItemProps<ValidComponent>['aria-current'] | undefined,
 ) {
   return value !== undefined && value !== false && value !== 'false'
-}
-
-function getTextContent(children: unknown): string {
-  if (typeof children === 'string' || typeof children === 'number') {
-    return String(children)
-  }
-
-  if (Array.isArray(children)) {
-    return children.map(getTextContent).join('')
-  }
-
-  return ''
-}
-
-function renderVisual(visual: UnderlineNavVisual | undefined) {
-  if (!visual) return undefined
-
-  const Component = Dynamic as unknown as (
-    componentProps: Record<string, unknown>,
-  ) => JSX.Element
-
-  if (typeof visual === 'function') {
-    return <Component component={visual as ValidComponent} />
-  }
-
-  return visual
 }
 
 function calculatePossibleItems(
@@ -249,10 +229,6 @@ function createResponsiveState(
   }
 }
 
-function UnderlineNavLoadingCounter() {
-  return <span class={styles.LoadingCounter} />
-}
-
 function MenuItemCounter(props: {
   counter: number | string | undefined
   loadingCounters: boolean
@@ -260,10 +236,7 @@ function MenuItemCounter(props: {
   return (
     <Show when={props.counter !== undefined}>
       <span data-component="counter">
-        <Show
-          when={!props.loadingCounters}
-          fallback={<UnderlineNavLoadingCounter />}
-        >
+        <Show when={!props.loadingCounters} fallback={<LoadingCounter />}>
           <CounterLabel>{props.counter}</CounterLabel>
         </Show>
       </span>
@@ -299,11 +272,6 @@ function RenderedUnderlineNavItem(props: {
       'tabIndex',
     ],
   )
-  const Component = Dynamic as unknown as (
-    componentProps: Record<string, unknown>,
-  ) => JSX.Element
-  const resolvedVisual = () => local.leadingVisual ?? renderVisual(local.icon)
-  const textContent = () => getTextContent(local.children)
   const isAnchor = () => (local.as ?? 'a') === 'a'
 
   const clickHandler: JSX.EventHandlerUnion<HTMLElement, MouseEvent> = (
@@ -331,36 +299,25 @@ function RenderedUnderlineNavItem(props: {
 
   return (
     <li class={styles.UnderlineNavItem}>
-      <Component
-        component={(local.as ?? 'a') as ValidComponent}
+      <UnderlineItem
+        as={(local.as ?? 'a') as ValidComponent}
         {...(rest as Record<string, unknown>)}
         ref={(element: unknown) => {
           assignRef(props.itemRef ?? local.ref, element)
         }}
-        class={mergeClassNames(
-          styles.UnderlineItem,
-          local.className,
-          local.class,
-        )}
+        class={mergeClassNames(local.className, local.class)}
         aria-current={local['aria-current']}
         href={isAnchor() ? (local.href ?? '#') : local.href}
+        icon={local.leadingVisual ?? local.icon}
+        iconsVisible={props.iconsVisible}
+        loadingCounters={props.loadingCounters}
+        counter={local.counter}
         onClick={clickHandler}
         onKeyDown={keyDownHandler}
         tabIndex={props.tabIndex ?? local.tabIndex}
       >
-        <Show when={props.iconsVisible && resolvedVisual()}>
-          <span data-component="icon">{resolvedVisual()}</span>
-        </Show>
-        <Show when={local.children !== undefined && local.children !== null}>
-          <span data-component="text" data-content={textContent() || undefined}>
-            {local.children}
-          </span>
-        </Show>
-        <MenuItemCounter
-          counter={local.counter}
-          loadingCounters={props.loadingCounters}
-        />
-      </Component>
+        {local.children}
+      </UnderlineItem>
     </li>
   )
 }
@@ -392,10 +349,6 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
     'ref',
     'variant',
   ])
-  const Component = Dynamic as unknown as (
-    componentProps: Record<string, unknown>,
-  ) => JSX.Element
-
   const contextValue: UnderlineNavContextValue = {
     upsert: (id, itemProps) => {
       setRegisteredItems((current) => {
@@ -501,18 +454,14 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
   })
 
   return (
-    <Component
-      component={(local.as ?? 'nav') as ValidComponent}
+    <UnderlineWrapper
+      as={(local.as ?? 'nav') as ValidComponent}
       {...(rest as Record<string, unknown>)}
       ref={(element: unknown) => {
         if (element instanceof HTMLElement) navRef = element
         assignRef(local.ref, element)
       }}
-      class={mergeClassNames(
-        styles.UnderlineWrapper,
-        local.className,
-        local.class,
-      )}
+      class={mergeClassNames(local.className, local.class)}
       aria-label={local['aria-label']}
       data-variant={local.variant ?? 'inset'}
       data-overflow-measured={
@@ -531,7 +480,7 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
         </UnderlineNavContext.Provider>
       </div>
 
-      <ul class={styles.UnderlineItemList} role="list">
+      <UnderlineItemList role="list">
         {responsiveState().items.map((item) => (
           <RenderedUnderlineNavItem
             itemProps={item.props}
@@ -634,10 +583,10 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
             </Show>
           </li>
         </Show>
-      </ul>
+      </UnderlineItemList>
 
       <div class={styles.MeasurementContainer} aria-hidden="true">
-        <ul class={styles.UnderlineItemList} role="presentation">
+        <UnderlineItemList role="presentation">
           {registeredItems().map((item) => (
             <RenderedUnderlineNavItem
               itemProps={item.props}
@@ -652,8 +601,8 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
               interactive={false}
             />
           ))}
-        </ul>
-        <ul class={styles.UnderlineItemList} role="presentation">
+        </UnderlineItemList>
+        <UnderlineItemList role="presentation">
           {registeredItems().map((item) => (
             <RenderedUnderlineNavItem
               itemProps={item.props}
@@ -668,9 +617,9 @@ function UnderlineNavRoot<As extends ValidComponent = 'nav'>(
               interactive={false}
             />
           ))}
-        </ul>
+        </UnderlineItemList>
       </div>
-    </Component>
+    </UnderlineWrapper>
   )
 }
 
