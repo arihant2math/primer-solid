@@ -1,4 +1,4 @@
-import { createEffect, splitProps } from 'solid-js'
+import { splitProps } from 'solid-js'
 import {
   ChoiceInputGroupCaption,
   ChoiceInputGroupLabel,
@@ -23,7 +23,6 @@ export type RadioGroupProps = ChoiceInputGroupProps & {
 }
 
 export function RadioGroupImpl(props: RadioGroupProps) {
-  let rootRef: HTMLFieldSetElement | HTMLDivElement | undefined
   let selectedValue: string | null = null
 
   const [local, rest] = splitProps(props, [
@@ -32,13 +31,6 @@ export function RadioGroupImpl(props: RadioGroupProps) {
     'name',
     'onChange',
   ])
-
-  createEffect(() => {
-    if (!rootRef) return
-    selectedValue =
-      rootRef.querySelector<HTMLInputElement>('input[type="radio"]:checked')
-        ?.value ?? null
-  })
 
   const handleChange = (
     event: Event & { currentTarget: HTMLInputElement; target: HTMLInputElement },
@@ -61,7 +53,7 @@ export function RadioGroupImpl(props: RadioGroupProps) {
         onChange: handleChange,
       }}
     >
-      <ChoiceInputGroupRoot disabled={local.disabled} rootRef={(element) => (rootRef = element)} {...rest}>
+      <ChoiceInputGroupRoot disabled={local.disabled} {...rest}>
         {local.children}
       </ChoiceInputGroupRoot>
     </RadioGroupProvider>

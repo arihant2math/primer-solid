@@ -244,7 +244,7 @@ export function ChoiceInputGroupRoot(props: ChoiceInputGroupRootProps) {
 
   if (!slots().label && !local['aria-labelledby']) {
     console.warn(
-      'A choice group must be labelled using a `CheckboxGroup.Label` or `RadioGroup.Label` child, or by passing `aria-labelledby` to the group component.',
+      'A choice group must be labelled using a `CheckboxOrRadioGroup.Label` child, or by passing `aria-labelledby` to the CheckboxOrRadioGroup component.',
     )
   }
 
@@ -261,9 +261,6 @@ export function ChoiceInputGroupRoot(props: ChoiceInputGroupRootProps) {
               local.className,
               local.class,
             )}
-            role="group"
-            aria-labelledby={local['aria-labelledby']}
-            aria-describedby={descriptionIds()}
             data-choice-input-group=""
             data-validation={slots().validation ? true : undefined}
           >
@@ -273,7 +270,14 @@ export function ChoiceInputGroupRoot(props: ChoiceInputGroupRootProps) {
             <Show when={local.required}>
               <VisuallyHidden id={requiredMessageId()}>Required</VisuallyHidden>
             </Show>
-            <div class={styles.Body}>{slots().items}</div>
+            <div
+              class={styles.Body}
+              role="group"
+              aria-labelledby={local['aria-labelledby']}
+              aria-describedby={descriptionIds()}
+            >
+              {slots().items}
+            </div>
           </div>
         }
       >

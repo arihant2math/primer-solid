@@ -2,7 +2,7 @@ import { createContext, useContext } from 'solid-js'
 
 type RadioGroupContextValue = {
   disabled?: boolean
-  name?: string
+  name: string
   onChange?: (
     event: Event & { currentTarget: HTMLInputElement; target: HTMLInputElement },
   ) => void

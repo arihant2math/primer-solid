@@ -11,6 +11,8 @@ import {
   Label,
   MarkGithubIcon,
   Octicon,
+  Radio,
+  RadioGroup,
   RelativeTime,
   ThemeProvider,
   octicons,
@@ -97,6 +99,26 @@ describe('@primer/solid', () => {
     expect(
       container.querySelector('[data-component="Octicon"]'),
     ).toBeInTheDocument()
+  })
+
+  it('exports Radio', () => {
+    render(() => <Radio name="choices" value="one" />)
+
+    expect(screen.getByRole('radio')).toBeInTheDocument()
+  })
+
+  it('exports RadioGroup', () => {
+    render(() => (
+      <RadioGroup name="choices">
+        <RadioGroup.Label>Choices</RadioGroup.Label>
+        <label>
+          <Radio value="one" />
+          Choice one
+        </label>
+      </RadioGroup>
+    ))
+
+    expect(screen.getByRole('group', { name: 'Choices' })).toBeInTheDocument()
   })
 
   it('exports RelativeTime', () => {

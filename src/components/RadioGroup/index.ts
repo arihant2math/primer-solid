@@ -3,6 +3,7 @@ import {
   RadioGroupImpl,
   RadioGroupLabel,
   RadioGroupValidation,
+  RadioGroupContext,
 } from './RadioGroup'
 import type {
   RadioGroupCaptionProps,
@@ -23,7 +24,7 @@ const RadioGroup: RadioGroupComponent = Object.assign(RadioGroupImpl, {
   Validation: RadioGroupValidation,
 })
 
-export { RadioGroup }
+export { RadioGroup, RadioGroupContext }
 export type {
   RadioGroupCaptionProps,
   RadioGroupLabelProps,

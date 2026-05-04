@@ -67,7 +67,7 @@ export function Radio(props: RadioProps) {
 
   if (!name() && !local['aria-hidden']) {
     console.warn(
-      'A radio input must have a `name` attribute. Pass `name` directly to Radio, or nest radios in a `RadioGroup` with a `name` prop.',
+      'A radio input must have a `name` attribute. Pass `name` as a prop directly to each Radio, or nest them in a `RadioGroup` component with a `name` prop',
     )
   }
 
@@ -91,7 +91,7 @@ export function Radio(props: RadioProps) {
       type="radio"
       value={local.value}
       name={name()}
-      disabled={local.disabled || groupContext?.disabled}
+      disabled={local.disabled}
       checked={local.checked}
       required={local.required}
       aria-checked={local.checked ? 'true' : 'false'}
