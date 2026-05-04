@@ -7,9 +7,11 @@ import {
   Button,
   Card,
   Flash,
+  Pagination,
   Label,
   MarkGithubIcon,
   Octicon,
+  RelativeTime,
   ThemeProvider,
   octicons,
 } from '../index'
@@ -79,12 +81,30 @@ describe('@primer/solid', () => {
     )
   })
 
+  it('exports Pagination', () => {
+    const { container } = render(() => (
+      <Pagination pageCount={5} currentPage={3} />
+    ))
+
+    expect(
+      container.querySelector('[data-component="Pagination"]'),
+    ).toBeInTheDocument()
+  })
+
   it('exports Octicon', () => {
     const { container } = render(() => <Octicon icon={MarkGithubIcon} />)
 
     expect(
       container.querySelector('[data-component="Octicon"]'),
     ).toBeInTheDocument()
+  })
+
+  it('exports RelativeTime', () => {
+    const { container } = render(() => (
+      <RelativeTime date={new Date('2024-03-07T12:22:48.123Z')} />
+    ))
+
+    expect(container.firstChild?.nodeName.toLowerCase()).toBe('relative-time')
   })
 
   it('exports icon components', () => {
