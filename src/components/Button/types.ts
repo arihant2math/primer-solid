@@ -62,6 +62,11 @@ export type ButtonBaseProps<As extends ValidComponent = 'button'> =
 export type ButtonProps<As extends ValidComponent = 'button'> =
   ButtonBaseProps<As>
 
+export type LinkButtonProps<As extends ValidComponent = 'a'> =
+  ButtonBaseProps<As> & {
+    disabled?: boolean
+  }
+
 type IconButtonOwnProps<As extends ValidComponent> = ButtonA11yProps &
   Omit<
     ButtonOwnProps<As>,

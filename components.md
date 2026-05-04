@@ -51,7 +51,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [x] Label (none)
 - [ ] LabelGroup (@primer/behaviors/utils, @primer/octicons-react, AnchoredOverlay, Button, VisuallyHidden) (not implemented)
 - [x] Link (hooks)
-- [ ] LinkButton (ButtonBase) (not implemented)
+- [x] LinkButton (ButtonBase) (implemented in `src/components/Button`; includes ButtonBase-backed anchor rendering, polymorphic `as`, loading state, and visual/count composition parity)
 - [ ] NavList (@primer/octicons-react, ActionList, useId) (not implemented)
 - [x] Octicon (@primer/octicons-react) (implemented in `src/components/Octicon`; exports Solid icon components matching the upstream component-based API, the deprecated `Octicon` wrapper, and `octicons` data)
 - [ ] Overlay (@primer/behaviors, FeatureFlags, Portal, hooks, useRefObjectAsForwardedRef) (not implemented)

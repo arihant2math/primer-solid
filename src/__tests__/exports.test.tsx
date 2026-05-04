@@ -7,6 +7,7 @@ import {
   Button,
   Card,
   Flash,
+  LinkButton,
   Pagination,
   Label,
   MarkGithubIcon,
@@ -75,6 +76,15 @@ describe('@primer/solid', () => {
     render(() => <Flash>Notice</Flash>)
 
     expect(screen.getByText('Notice')).toBeInTheDocument()
+  })
+
+  it('exports LinkButton', () => {
+    render(() => <LinkButton href="/pulls">Pull requests</LinkButton>)
+
+    expect(screen.getByRole('link', { name: 'Pull requests' })).toHaveAttribute(
+      'href',
+      '/pulls',
+    )
   })
 
   it('exports BranchName', () => {

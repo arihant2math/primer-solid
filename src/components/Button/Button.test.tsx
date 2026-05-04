@@ -4,6 +4,7 @@ import { vi } from 'vitest'
 import { Button } from './Button'
 import { ButtonBase } from './ButtonBase'
 import { IconButton } from './IconButton'
+import { LinkButton } from './LinkButton'
 import styles from './ButtonBase.module.css'
 
 const LeadingVisual = () => <span data-testid="leading-visual">Lead</span>
@@ -232,6 +233,26 @@ describe('Button', () => {
     expect(
       container.querySelector('[data-component="trailingAction"]'),
     ).toBeInTheDocument()
+  })
+})
+
+describe('LinkButton', () => {
+  it('renders an anchor by default, forwards refs, and sets the LinkButton data-component', () => {
+    let element: HTMLAnchorElement | undefined
+
+    const { container } = render(() => (
+      <LinkButton href="/pulls" ref={(node) => (element = node as HTMLAnchorElement)}>
+        Pull requests
+      </LinkButton>
+    ))
+
+    const link = screen.getByRole('link', { name: 'Pull requests' })
+
+    expect(container.firstChild?.nodeName).toBe('A')
+    expect(link).toHaveAttribute('href', '/pulls')
+    expect(link).toHaveAttribute('data-component', 'LinkButton')
+    expect(link.querySelector('[data-component="buttonContent"]')).toBeInTheDocument()
+    expect(element).toBeInstanceOf(HTMLAnchorElement)
   })
 })
 
