@@ -95,7 +95,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [x] TopicTag (none)
 - [x] TopicTagGroup (TopicTag)
 - [ ] TreeView (@primer/octicons-react, ActionList, Button, ConfirmationDialog, Dialog, KeybindingHint, SkeletonAvatar, SkeletonText, Spinner, Text, Tooltip, VisuallyHidden, live-region, useControllableState, useId, useSafeTimeout, useSlots) (not implemented)
-- [ ] Truncate (none) (not implemented)
+- [x] Truncate (implemented in `src/components/Truncate`; includes upstream default `div`, polymorphic `as`, required `title`, `inline`/`expandable` data attrs, and `maxWidth` CSS variable styling semantics)
 - [ ] UnderlineNav (@primer/behaviors, @primer/octicons-react, ActionList, Button, CounterLabel, VisuallyHidden, useId, useOnEscapePress, useOnOutsideClick, useResizeObserver) (partially implemented in `src/components/UnderlineNav`; includes `UnderlineNav.Item`, current item styling, counters/loading counters, icons/leadingVisual, hidden heading + nav labelling, `flush`/`inset` variants, custom `as`, and responsive overflow menu with More button; still missing full upstream anchored-position fidelity and broader integration parity)
 - [ ] UnderlineNav (deprecated) (none) (not implemented)
 - [ ] UnderlinePanels (experimental) (@github/tab-container-element, @primer/octicons-react, hooks, useResizeObserver) (partially implemented in `src/components/UnderlinePanels`; includes `UnderlinePanels.Tab`/`Panel`, tablist labelling, generated tab/panel ids, controlled/default selection, click selection, counters/loading counters, icons, and narrow-width icon hiding; still missing full upstream custom-element parity and broader interaction/slot compatibility)
