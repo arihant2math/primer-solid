@@ -43,7 +43,7 @@ Checked means the Solid implementation appears to have full API, behavior, acces
 - [x] Header (none)
 - [ ] Heading (hooks) (partially implemented in `src/components/Heading`; API uses `size` instead of React `variant`, missing ref/dev semantic validation/data-variant parity)
 - [ ] Hidden (useResponsiveValue) (not implemented)
-- [ ] IconButton (ButtonBase, Tooltip) (not implemented)
+- [ ] IconButton (ButtonBase, Tooltip) (partially implemented in `src/components/Button`; includes ButtonBase-backed icon-only button rendering, aria label/description semantics, keyshortcut support, loading/variant/size states, and basic built-in tooltip behavior; still missing full upstream Tooltip integration parity)
 - [ ] InlineMessage (@primer/octicons-react, react-is) (not implemented)
 - [x] IssueLabel (color2k)
 - [x] IssueLabelToken (Token, color2k)

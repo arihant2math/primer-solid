@@ -3,11 +3,13 @@ import { fireEvent, render, screen } from '@solidjs/testing-library'
 import { vi } from 'vitest'
 import { Button } from './Button'
 import { ButtonBase } from './ButtonBase'
+import { IconButton } from './IconButton'
 import styles from './ButtonBase.module.css'
 
 const LeadingVisual = () => <span data-testid="leading-visual">Lead</span>
 const TrailingVisual = () => <span data-testid="trailing-visual">Trail</span>
 const TrailingAction = () => <span data-testid="trailing-action">Action</span>
+const Icon = () => <svg data-testid="icon" />
 
 function StatefulLoadingButton(
   props: {
@@ -230,6 +232,84 @@ describe('Button', () => {
     expect(
       container.querySelector('[data-component="trailingAction"]'),
     ).toBeInTheDocument()
+  })
+})
+
+describe('IconButton', () => {
+  it('renders an icon-only button with the IconButton data-component and class', () => {
+    const { container } = render(() => (
+      <IconButton icon={Icon} aria-label="Search" />
+    ))
+
+    const button = screen.getByRole('button', { name: 'Search' })
+
+    expect(button).toHaveAttribute('data-component', 'IconButton')
+    expect(button).toHaveClass(styles.IconButton)
+    expect(container.querySelector('[data-testid="icon"]')).toBeInTheDocument()
+  })
+
+  it('uses the generated tooltip content to label the button by default', () => {
+    render(() => <IconButton icon={Icon} aria-label="Favorite" />)
+
+    const button = screen.getByRole('button', { name: 'Favorite' })
+    const tooltipId = button.getAttribute('aria-labelledby')
+
+    expect(tooltipId).toBeTruthy()
+    expect(document.getElementById(tooltipId as string)).toHaveTextContent('Favorite')
+    expect(button).not.toHaveAttribute('aria-label')
+  })
+
+  it('uses the tooltip content as an accessible description when description is provided', () => {
+    render(() => (
+      <IconButton
+        icon={Icon}
+        aria-label="Notifications"
+        description="You have no unread notifications."
+      />
+    ))
+
+    const button = screen.getByRole('button', { name: 'Notifications' })
+    const describedBy = button.getAttribute('aria-describedby')
+    const describedByIds = describedBy?.split(' ')
+    const tooltipId = describedByIds?.[describedByIds.length - 1]
+
+    expect(button).toHaveAttribute('aria-label', 'Notifications')
+    expect(tooltipId).toBeTruthy()
+    expect(document.getElementById(tooltipId as string)).toHaveTextContent(
+      'You have no unread notifications.',
+    )
+    expect(button).toHaveAccessibleDescription('You have no unread notifications.')
+  })
+
+  it('does not generate a tooltip relationship when disabled or explicitly opted out', () => {
+    const first = render(() => (
+      <IconButton icon={Icon} aria-label="Disabled" disabled />
+    ))
+
+    const disabledButton = screen.getByRole('button', { name: 'Disabled' })
+    expect(disabledButton).toHaveAttribute('aria-label', 'Disabled')
+    expect(disabledButton).not.toHaveAttribute('aria-labelledby')
+    expect(first.container.querySelector(`.${styles.IconButtonTooltipWrapper}`)).not.toBeInTheDocument()
+
+    first.unmount()
+
+    render(() => (
+      <IconButton icon={Icon} aria-label="Opt out" unsafeDisableTooltip />
+    ))
+
+    const optOutButton = screen.getByRole('button', { name: 'Opt out' })
+    expect(optOutButton).toHaveAttribute('aria-label', 'Opt out')
+    expect(optOutButton).not.toHaveAttribute('aria-labelledby')
+  })
+
+  it('passes aria-keyshortcuts through when tooltip labeling is active', () => {
+    render(() => (
+      <IconButton icon={Icon} aria-label="Bold" keyshortcuts="Mod+B" />
+    ))
+
+    const button = screen.getByRole('button', { name: 'Bold (Mod+B)' })
+
+    expect(button).toHaveAttribute('aria-keyshortcuts', 'Mod+B')
   })
 })
 

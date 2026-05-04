@@ -76,6 +76,80 @@
   width: var(--control-large-size, 40px);
 }
 
+.IconButtonTooltipWrapper {
+  position: relative;
+  display: inline-flex;
+  vertical-align: top;
+}
+
+.IconButtonTooltip {
+  position: absolute;
+  z-index: 1000;
+  max-width: min(20rem, calc(100vw - 16px));
+  padding: var(--base-size-6, 6px) var(--base-size-8, 8px);
+  font-size: var(--text-body-size-small, 12px);
+  line-height: var(--text-body-lineHeight-small, 1.6667);
+  color: var(--fgColor-onEmphasis, #ffffff);
+  white-space: nowrap;
+  pointer-events: none;
+  background-color: var(--overlay-bgColor, #24292f);
+  border-radius: var(--borderRadius-medium, 6px);
+  box-shadow: var(--shadow-floating-small, 0 8px 24px rgba(140, 149, 159, 0.2));
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease-out, visibility 120ms ease-out;
+}
+
+.IconButtonTooltipWrapper:hover .IconButtonTooltip,
+.IconButtonTooltipWrapper:focus-within .IconButtonTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.IconButtonTooltip[data-direction='n'] {
+  bottom: calc(100% + var(--base-size-8, 8px));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.IconButtonTooltip[data-direction='ne'] {
+  right: 0;
+  bottom: calc(100% + var(--base-size-8, 8px));
+}
+
+.IconButtonTooltip[data-direction='e'] {
+  top: 50%;
+  left: calc(100% + var(--base-size-8, 8px));
+  transform: translateY(-50%);
+}
+
+.IconButtonTooltip[data-direction='se'] {
+  top: calc(100% + var(--base-size-8, 8px));
+  right: 0;
+}
+
+.IconButtonTooltip[data-direction='s'] {
+  top: calc(100% + var(--base-size-8, 8px));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.IconButtonTooltip[data-direction='sw'] {
+  top: calc(100% + var(--base-size-8, 8px));
+  left: 0;
+}
+
+.IconButtonTooltip[data-direction='w'] {
+  top: 50%;
+  right: calc(100% + var(--base-size-8, 8px));
+  transform: translateY(-50%);
+}
+
+.IconButtonTooltip[data-direction='nw'] {
+  bottom: calc(100% + var(--base-size-8, 8px));
+  left: 0;
+}
+
 .ButtonBase[href] {
   display: inline-flex;
 }
